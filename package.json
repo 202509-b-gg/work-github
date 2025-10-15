@@ -18,5 +18,9 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3"
+  },
+  "resolutions": {
+    "glob": "^7.2.3",
+    "minimatch": "9.0.5"
   }
 }
