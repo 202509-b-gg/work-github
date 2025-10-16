@@ -3,4 +3,7 @@ Rails.application.routes.draw do
 
   root to: "public/homes#top"
   get "about", to: "public/homes#about", as: "homes_about"
+  scope module: :public do
+    resources :items, only: [:index, :show]
+  end
 end
