@@ -4,6 +4,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    @allitems = Item.all
+    @items = Item.page(params[:page])
   end
 end
