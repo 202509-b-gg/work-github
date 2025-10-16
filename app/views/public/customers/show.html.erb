@@ -1,0 +1,60 @@
+<body class="bg-white">
+
+  <div class="container-fluid py-5">
+    <!-- マイページ見出し -->
+    <h4 class="mb-4">マイページ</h4>
+
+    <!-- 登録情報 -->
+    <div class="d-flex align-items-center mb-2">
+      <h4 class="mb-0 fw-bold me-3">登録情報</h4>
+      <button class="btn btn-success btn-sm">編集する</button>
+    </div>
+
+    <table class="table table-bordered mb-4 bg-white w-auto">
+      <tbody>
+        <tr>
+          <th style="width: 150px;">氏名</th>
+          <td>山田 花子</td>
+        </tr>
+        <tr>
+          <th>カナ</th>
+          <td>ヤマダ ハナコ</td>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <td>1500041</td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td>東京都渋谷区神南１丁目１９−１１ パークウェースクエア２４階</td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td>0368694700</td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td>hoge@example.com</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 配送先・注文履歴（テーブル風） -->
+    <table>
+      <tbody>
+        <tr>
+          <th style="width: 150px;"><h4>配送先</h4></th>
+          <td>
+            <%= button_to '一覧を見る', addresses_path, method: :get, class: 'btn btn-primary btn-sm' %>
+          </td>
+        </tr>
+        <tr>
+          <th><h4>注文履歴</h4></th>
+          <td>
+            <a href="#" class="btn btn-primary btn-sm">一覧を見る</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
