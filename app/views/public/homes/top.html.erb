@@ -1,47 +1,47 @@
-<div class="top-page-wrapper">
-  <div class="top-page-container">
-    <aside class="genre-search">
-      <table>
-        <thead>
-          <tr><th>ジャンル検索</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>ケーキ</td></tr>
-          <tr><td>焼き菓子</td></tr>
-          <tr><td>プリン</td></tr>
-          <tr><td>キャンディ</td></tr>
-        </tbody>
-      </table>
-    </aside>
+<div class="container-main mt-4">
+  <!-- サイドバー -->
+  <aside class="sidebar-area">
+    <div class="card mb-4">
+      <div class="card-header text-center font-weight-bold">
+        ジャンル検索
+      </div>
+      <ul class="list-group list-group-flush genre-list">
+        <li class="list-group-item text-center">ケーキ</li>
+        <li class="list-group-item text-center">焼き菓子</li>
+        <li class="list-group-item text-center">プリン</li>
+        <li class="list-group-item text-center">キャンディ</li>
+      </ul>
+    </div>
+  </aside>
 
-    <main class="main-content">
-      <div class="welcome-area">
-        <div class="welcome-image">
-          <!-- 仮の画像枠（バッテンはCSSで表現） -->
-        </div>
-        <div class="welcome-msg">
+  <!-- メインコンテンツ -->
+  <main class="main-content-area">
+    <div class="welcome-area">
+      <div class="welcome-image-box position-relative">
+        <%= image_tag "イメージ画像_Gemini.png", alt: "Topページ", class: "welcome-placeholder-img" %>
+        <div class="welcome-msg-box">
           ようこそ、ながのCAKEへ！<br>
           このサイトは、ケーキ販売のECサイトになります。<br>
           会員でないけど商品の閲覧はできますが、<br>
           購入には会員登録が必要になります。
         </div>
       </div>
+    </div>
 
-      <section class="new-products">
-        <h2>新着商品</h2>
-        <div class="product-list">
-          <% 4.times do %>
-            <div class="product-box">
-              <div class="product-img"></div>
-              <div class="product-name">商品名</div>
-              <div class="product-price">¥0,000</div>
-            </div>
-          <% end %>
+    <h2 class="section-title">新着商品</h2>
+    <div class="product-list-row">
+      <% 4.times do %>
+        <div class="d-flex flex-column align-items-center">
+          <div class="product-img-box">
+            <%= image_tag "no_image.jpg", alt: "NO IMAGE", class: "product-placeholder-img" %>
+          </div>
+          <div class="product-name">商品名</div>
+          <div class="product-price">¥0,000</div>
         </div>
-        <div class="all-products-link" style="text-align: right; margin-top: 12px;">
-          <span style="color: gray;">全ての商品を見る＞（準備中）</span>
-        </div>
-      </section>
-    </main>
-  </div>
+      <% end %>
+    </div>
+    <div class="all-products-link">
+      <span style="color: gray;">全ての商品を見る＞（準備中）</span>
+    </div>
+  </main>
 </div>

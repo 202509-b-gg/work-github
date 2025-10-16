@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
+  resources :customers, only: [:show, :edit, :update] do
+  end
 
   root to: "public/homes#top"
   get "about", to: "public/homes#about", as: "homes_about"

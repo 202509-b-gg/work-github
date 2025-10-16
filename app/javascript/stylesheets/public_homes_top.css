@@ -1,156 +1,110 @@
-.top-page-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.genre-list .list-group-item {
+  font-size: 1.1rem;
+  padding: 1rem 0.5rem;
 }
-
-.top-page-container {
+.container-main {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   gap: 32px;
-  width: 1100px;
-  margin-top: 40px;
 }
 
-/* 左側のジャンル検索 */
-.genre-search {
-  width: 200px;
-  margin-top: 40px;
-}
-.genre-search table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.genre-search th {
-  background: #eee;
-  border: 2px solid #000;
-  padding: 8px;
-  text-align: center;
-  font-size: 18px;
-}
-.genre-search td {
-  border: 2px solid #000;
-  padding: 14px 8px;
-  font-size: 16px;
-  cursor: pointer;
+.sidebar-area {
+  width: 210px;
+  min-width: 180px;
 }
 
-/* メインコンテンツ */
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.search-attention {
-  color: #d00;
-  margin-bottom: 18px;
-  margin-left: 40px;
-  font-size: 15px;
-  font-weight: bold;
-}
-
-/* ウェルカムエリア */
 .welcome-area {
+  width: 100%;
+  min-height: 400px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 48px;
-  margin-top: 10px;
-  width: 100%;
-}
-
-.welcome-image {
-  width: 410px;
-  height: 200px;
-  border: 2px solid #888;
-  margin-right: 24px;
+  align-items: center;
+  margin: 60px 0 50px 0;
   position: relative;
-  background: #fff;
-}
-.welcome-image::before, .welcome-image::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: #888;
-  top: 0; left: 0;
-  transform: rotate(30deg);
-}
-.welcome-image::after {
-  transform: rotate(-30deg);
-  top: auto;
-  bottom: 0;
 }
 
-/* テキストボックス */
-.welcome-msg {
-  border: 2px solid #000;
+.welcome-image-box {
+  width: 820px;
+  height: 380px;
+  border: 2px solid #888;
   background: #fff;
-  padding: 24px;
-  font-size: 17px;
-  min-width: 340px;
-  text-align: left;
-  margin-left: -160px; /* 画像の中心に重ねるイメージ */
-  z-index: 2;
-  background: #fff;
-  box-shadow: 2px 2px 8px #eee;
-}
-
-/* 新着商品 */
-.new-products h2 {
-  font-size: 28px;
-  font-weight: bold;
-  margin: 40px 0 24px 0;
-}
-
-.product-list {
   display: flex;
-  gap: 32px;
-  margin-left: 32px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.product-box {
-  width: 200px;
+.welcome-placeholder-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  display: block;
+}
+
+.welcome-msg-box {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.73);
+  color: #222;
+  border-radius: 18px;
+  border: 2px solid #444;
+  padding: 32px 42px;
+  font-size: 1.18rem;
+  font-weight: 500;
   text-align: left;
+  min-width: 360px;
+  max-width: 80%;
+  box-shadow: 0 8px 24px 0 rgba(0,0,0,0.18), 0 1.5px 4px 0 rgba(0,0,0,0.07);
+  z-index: 2;
+  letter-spacing: 0.01em;
 }
 
-.product-img {
-  width: 200px;
-  height: 130px;
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 32px 0 24px 8px;
+}
+
+.product-list-row {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  margin-bottom: 8px;
+}
+
+.product-img-box {
+  width: 190px;
+  height: 120px;
   background: #fff;
   border: 2px solid #888;
-  margin-bottom: 10px;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
 }
-.product-img::before, .product-img::after {
-  content: "";
-  position: absolute;
-  background: #888;
-}
-.product-img::before {
+
+.product-placeholder-img {
   width: 100%;
-  height: 2px;
-  top: 50%;
-  left: 0;
-  transform: rotate(0deg);
-}
-.product-img::after {
-  width: 2px;
   height: 100%;
-  left: 50%;
-  top: 0;
-  transform: rotate(0deg);
+  object-fit: cover;
+  border: none;
+  display: block;
 }
 
 .product-name {
-  font-size: 16px;
+  font-size: 1.05rem;
   font-weight: bold;
+  margin-bottom: 2px;
 }
 .product-price {
-  font-size: 16px;
+  font-size: 1rem;
 }
 .all-products-link {
   text-align: right;
-  margin-top: 12px;
+  margin-top: 10px;
 }
