@@ -1,0 +1,19 @@
+<div class="row">
+  <h4>商品一覧</h4>
+  <p><%= "(全#{@allitems.count}件)" %></p>
+</div>
+  <div class="row">
+   <% @items.each do |item| %>
+      <div class="col-md-3 p-2">
+        <td><%= link_to 'Show', @item do %>
+          <%= image_tag item.get_item_image, size:'150x100' %>
+          <% end %>
+        </td><br>
+        <td><%= item.name %></td><br>
+        <td><%= "¥#{item.price}" %></td>
+      </div>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-center mt-3">
+    <%= paginate @items %>
+  </div>
