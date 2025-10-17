@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'cart_items/index'
+  end
   # 顧客用
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -24,6 +27,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :edit, :update] 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :edit, :create, :update, :destroy]
   end
 
   # 管理者用リソース
