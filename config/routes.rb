@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'cart_items/index'
+  end
   # 顧客用
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -15,6 +18,7 @@ Rails.application.routes.draw do
   get "about", to: "public/homes#about", as: "homes_about"
 
   scope module: :public do
+    get 'customers/my_page', to: 'customers#show', as: 'my_page'
     get 'customers/unsubscribe', to: 'customers#unsubscribe', as: 'unsubscribe_customer'
     patch 'customers/withdraw', to: 'customers#withdraw', as: 'withdraw_customer'
     get 'customers/infomation/edit', to: 'customers#edit', as: 'edit_customer_information'
@@ -30,6 +34,7 @@ Rails.application.routes.draw do
         get 'thanks'
       end
     end
+    resources :cart_items, only: [:index, :edit, :create, :update, :destroy]
   end
 
   # 管理者用リソース
