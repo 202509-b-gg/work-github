@@ -23,7 +23,7 @@
   margin-right: 3px;
   margin-left: 2px;
   display: inline-block;
-  white-space: nowrap;
+  white-space: nowrap !important;
 }
 .flex-name {
   flex: 0 1 110px;
@@ -66,6 +66,11 @@
   padding: 2px 14px;
   border-radius: 4px;
 }
+
+.label-nowrap {
+  white-space: nowrap;
+}
+
 @media (max-width: 1400px) {
   .register-form-outer {
     max-width: 99vw;
@@ -74,5 +79,8 @@
 @media (max-width: 991px) {
   .form-group.row.flex-nowrap {
     flex-wrap: wrap !important;
+  }
+  .label-nowrap {
+    white-space: normal;
   }
 }
