@@ -23,6 +23,13 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :edit, :update] 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :items, only: [:index, :show]
+    
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        post 'confirm'
+        get 'thanks'
+      end
+    end
   end
 
   # 管理者用リソース
