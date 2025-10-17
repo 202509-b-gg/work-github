@@ -1,6 +1,5 @@
 class Public::CustomersController < ApplicationController
-  # ログイン必須
-  # before_action :authenticate_customer!  
+  # before_action :authenticate_customer!
 
   def show
     @customer = current_customer
@@ -15,7 +14,7 @@ class Public::CustomersController < ApplicationController
     if @customer.update(customer_params)
       redirect_to my_page_path, notice: "更新しました"
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -23,6 +22,14 @@ class Public::CustomersController < ApplicationController
   end
 
   def withdraw
+    @customer = current_customer
+    if @customer.update(is_active: false)
+      # セッションをクリアしてログアウトさせる
+      reset_session
+      redirect_to root_path
+    else
+      render 'unsubscribe'
+    end
   end
 
   private
