@@ -7,37 +7,38 @@
     <!-- 登録情報 -->
     <div class="d-flex align-items-center mb-2">
       <h4 class="mb-0 fw-bold me-3">登録情報</h4>
-      <button class="btn btn-success btn-sm">編集する</button>
+      <%= button_to '編集する', edit_customer_path, method: :get, class: 'btn btn-success btn-sm' %>
     </div>
 
     <table class="table table-bordered mb-4 bg-white w-auto">
       <tbody>
         <tr>
-          <th style="width: 150px;">氏名</th>
-          <td>山田 花子</td>
+          <th>氏名</th>
+          <td><%= @customer.last_name %> <%= @customer.first_name %></td>
         </tr>
         <tr>
           <th>カナ</th>
-          <td>ヤマダ ハナコ</td>
+          <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
         </tr>
         <tr>
           <th>郵便番号</th>
-          <td>1500041</td>
+          <td><%= @customer.postal_code %></td>
         </tr>
         <tr>
           <th>住所</th>
-          <td>東京都渋谷区神南１丁目１９−１１ パークウェースクエア２４階</td>
+          <td><%= @customer.address %></td>
         </tr>
         <tr>
           <th>電話番号</th>
-          <td>0368694700</td>
+          <td><%= @customer.telephone_number %></td>
         </tr>
         <tr>
           <th>メールアドレス</th>
-          <td>hoge@example.com</td>
+          <td><%= @customer.email %></td>
         </tr>
       </tbody>
     </table>
+
 
     <!-- 配送先・注文履歴（テーブル風） -->
     <table>

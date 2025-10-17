@@ -3,12 +3,21 @@ class Public::AddressesController < ApplicationController
   # before_action :authenticate_customer! 
 
   def index
+    @customer = current_customer
+    @addresses = @customer.addresses
   end
 
   def edit
   end
 
   def create
+    @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
+    if @address.save
+      redirect_to address_path
+    else
+      render 'index'
+    end
   end
 
   def update
@@ -19,7 +28,7 @@ class Public::AddressesController < ApplicationController
 
   private
 
-  def customer_params
-  params.require(:address).permit(:recipient_name, :postal_code, :address)
+  def address_params
+    params.permit(:postal_code, :address, :recipient_name)
   end
 end
