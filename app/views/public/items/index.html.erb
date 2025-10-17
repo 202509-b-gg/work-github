@@ -1,9 +1,7 @@
-<div class='container-main mt-4'>
+<div class='container py-5'>
   <div class='row'>
-    <div class="col-md-3">
-      <%= render 'sidebar' %>
-    </div>
-      <div>
+     <%= render 'sidebar' %>
+      <div class='col-md-10'>
         <div class="row">
           <h4>商品一覧</h4>
           <p><%= "(全#{@allitems.count}件)" %></p>
@@ -12,7 +10,7 @@
             <% @items.each do |item| %>
               <div class="col-md-3 p-2">
                 <td><%= link_to item_path(item.id) do %>
-                  <%= image_tag item.get_item_image, size:'150x100' %>
+                  <%= image_tag item.get_item_image, size:'200x130' %>
                   <% end %>
                 </td><br>
                 <td><%= item.name %></td><br>
