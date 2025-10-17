@@ -9,7 +9,7 @@
 
             <!-- 名前 -->
             <div class="form-group row align-items-center mb-3 flex-nowrap">
-              <label class="col-2 col-form-label text-left">名前</label>
+              <label class="col-3 col-form-label text-left label-nowrap">名前</label>
               <div class="col-3 d-flex align-items-center flex-nowrap pr-0">
                 <span class="mini-label">(姓)</span>
                 <%= f.text_field :last_name, class: "form-control ml-2 flex-name", placeholder: "令和" %>
@@ -18,11 +18,11 @@
                 <span class="mini-label">(名)</span>
                 <%= f.text_field :first_name, class: "form-control ml-2 flex-name", placeholder: "道子" %>
               </div>
-              <div class="col-4"></div>
+              <div class="col-3"></div>
             </div>
             <!-- フリガナ -->
             <div class="form-group row align-items-center mb-3 flex-nowrap">
-              <label class="col-2 col-form-label text-left">フリガナ</label>
+              <label class="col-3 col-form-label text-left label-nowrap">フリガナ</label>
               <div class="col-3 d-flex align-items-center flex-nowrap pr-0">
                 <span class="mini-label">(セイ)</span>
                 <%= f.text_field :last_name_kana, class: "form-control ml-2 flex-name", placeholder: "レイワ" %>
@@ -31,53 +31,53 @@
                 <span class="mini-label">(メイ)</span>
                 <%= f.text_field :first_name_kana, class: "form-control ml-2 flex-name", placeholder: "ミチコ" %>
               </div>
-              <div class="col-4"></div>
+              <div class="col-3"></div>
             </div>
             <!-- メールアドレス -->
             <div class="form-group row mb-3">
-              <label class="col-2 col-form-label text-left">メールアドレス</label>
-              <div class="col-10">
+              <label class="col-3 col-form-label text-left label-nowrap">メールアドレス</label>
+              <div class="col-9">
                 <%= f.email_field :email, class: "form-control flex-long", placeholder: "sample@example.com" %>
               </div>
             </div>
             <!-- 郵便番号 -->
             <div class="form-group row mb-3">
-              <label class="col-2 col-form-label text-left">郵便番号(ハイフンなし)</label>
-              <div class="col-10">
+              <label class="col-3 col-form-label text-left label-nowrap">郵便番号(ハイフンなし)</label>
+              <div class="col-9">
                 <%= f.text_field :postal_code, class: "form-control flex-long", placeholder: "0000000" %>
               </div>
             </div>
             <!-- 住所 -->
             <div class="form-group row mb-3">
-              <label class="col-2 col-form-label text-left">住所</label>
-              <div class="col-10">
+              <label class="col-3 col-form-label text-left label-nowrap">住所</label>
+              <div class="col-9">
                 <%= f.text_field :address, class: "form-control flex-long", placeholder: "東京都渋谷区代々木神園町0-0" %>
               </div>
             </div>
             <!-- 電話番号 -->
             <div class="form-group row mb-3">
-              <label class="col-2 col-form-label text-left">電話番号(ハイフンなし)</label>
-              <div class="col-10">
+              <label class="col-3 col-form-label text-left label-nowrap">電話番号(ハイフンなし)</label>
+              <div class="col-9">
                 <%= f.text_field :telephone_number, class: "form-control flex-long", placeholder: "00000000000" %>
               </div>
             </div>
             <!-- パスワード -->
             <div class="form-group row mb-3">
-              <label class="col-2 col-form-label text-left">パスワード(6文字以上)</label>
-              <div class="col-10">
+              <label class="col-3 col-form-label text-left label-nowrap">パスワード(6文字以上)</label>
+              <div class="col-9">
                 <%= f.password_field :password, class: "form-control flex-long" %>
               </div>
             </div>
             <!-- パスワード(確認用) -->
             <div class="form-group row mb-3">
-              <label class="col-2 col-form-label text-left">パスワード(確認用)</label>
-              <div class="col-10">
+              <label class="col-3 col-form-label text-left label-nowrap">パスワード(確認用)</label>
+              <div class="col-9">
                 <%= f.password_field :password_confirmation, class: "form-control flex-long" %>
               </div>
             </div>
             <div class="form-group row">
-              <div class="col-2"></div>
-              <div class="col-10 text-center">
+              <div class="col-3"></div>
+              <div class="col-9 text-center">
                 <%= f.submit "新規登録", class: "btn btn-success register-btn w-75" %>
               </div>
             </div>
