@@ -15,7 +15,7 @@ class Public::CustomersController < ApplicationController
     if @customer.update(customer_params)
       redirect_to my_page_path, notice: "更新しました"
     else
-      render :edit
+      render 'edit'
     end
   end
 
