@@ -6,4 +6,8 @@ class Customer < ApplicationRecord
 
   has_many :addresses, dependent: :destroy
   
+  # is_activeがfalseの場合はログイン不可にする
+  def active_for_authentication?
+    super && is_active
+  end
 end
