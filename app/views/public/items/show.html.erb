@@ -1,7 +1,9 @@
 <div class='container py-5'>
   <div class='row'>
-  <%= render 'sidebar' %>
-    <div class='col-md-10'>
+    <div class="col-md-3">
+      <%= render 'sidebar' %>
+    </div>
+    <div>
         <div class='row'>
           <div>
             <%= image_tag @item.get_item_image, size:"300x200" %>
@@ -9,7 +11,11 @@
           <div class='px-3'>    
             <h2><%= @item.name %></h2>
             <p><%= @item.introduction %></p>
-            <h4><%= "¥#{@item.price}" %></h4>
+            <div class="d-inline-flex align-items-end">
+            <h4 class="fw-bold mb-0">
+            <%= "¥#{@item.add_tax_price.to_s(:delimited)}" %>
+            </h4>
+            <small class="ms-1" style="font-size:0.8rem; line-height:1;">(税込)</small>
           </div>
         </div>
     </div>
