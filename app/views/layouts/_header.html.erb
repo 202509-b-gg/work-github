@@ -1,15 +1,47 @@
 <header>
   <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container">
-      <%= link_to root_path, class: "navbar-brand d-flex align-items-center py-0 m-0" do %>
-        <%= image_tag("ながのCAKE_ロゴ.png", alt: "ながのCAKE ロゴ", class: "cake-logo") %>
+      <% if admin_signed_in? %>
+        <%= link_to admin_root_path, class: "navbar-brand d-flex align-items-center py-0 m-0" do %>
+          <%= image_tag("ながのCAKE_ロゴ.png", alt: "ながのCAKE ロゴ", class: "cake-logo") %>
+        <% end %>
+      <% else %>
+        <%= link_to root_path, class: "navbar-brand d-flex align-items-center py-0 m-0" do %>
+          <%= image_tag("ながのCAKE_ロゴ.png", alt: "ながのCAKE ロゴ", class: "cake-logo") %>
+        <% end %>
       <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-        <% if customer_signed_in? %>
+        <% if admin_signed_in? %>
+          <li>
+            <%= link_to admin_items_path, class: 'nav-link text-dark font-weight-bold' do %>
+              <i class="fa-brands fa-shopify"></i> 商品一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_customers_path, class: 'nav-link text-dark font-weight-bold' do %>
+              <i class="fas fa-users"></i> 会員一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_root_path, class: 'nav-link text-dark font-weight-bold' do %>
+              <i class="fa-solid fa-bag-shopping"></i> 注文履歴一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_genres_path, class: 'nav-link text-dark font-weight-bold' do %>
+              <i class="fas fa-tags"></i> ジャンル一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark font-weight-bold' do %>
+              <i class="fas fa-sign-out-alt"></i> logout
+            <% end %>
+          </li>
+        <% elsif customer_signed_in? %>
           <li>
             <%= link_to customer_path(current_customer), class: 'nav-link text-dark font-weight-bold' do %>
               <i class="fas fa-user"></i> マイページ
