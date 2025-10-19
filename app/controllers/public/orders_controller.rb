@@ -5,12 +5,38 @@ class Public::OrdersController < ApplicationController
   end
   
   def confirm
-    @order = Order.new(order_params)
-    @address = Address.find(params[:order][:address_id])
-    @order.postal_code = @address.postal_code
-    @order.address = @address.address
-    @order.name = @address.name
+    @cart_items = CartItem.where(member_id: current_member.id)
+    @shipping_fee = 800 #送料は800円で固定
+    @selected_pay_method = params[:order][:pey_method]
+    
+    #以下、商品合計額の計算
+    ary = []
+    @cart_items.each do |cart_item|
+      ary << cart_item.item.price*cart_item.quantity
+    end
+    @cart_items_price = ary.sum
+    
+    @total_price = @shipping_fee + @cart_items_price
+    @address_type = params[:order][:address_type]
+    case @address_type
+    when "member_address"
+      @selected_address = current_member.post_code + " " + current_member.address + " " + current_member.family_name + current_member.first_name
+    when "registered_address"
+      unless params[:order][:registered_address_id] == ""
+        selected = Address.find(params[:order][:registered_address_id]
+        @selected_address = selected.post_code + " " + selected.address + " " + selected.name
+      else	 
+        render :new
+      end
+    when "new_address"
+      unless params[:order][:new_post_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
+        @selected_address = params[:order][:new_post_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
+      else
+        render :new
+      end
+    end     
   end
+    
   
   def create
     @order = Order.new
@@ -63,8 +89,6 @@ class Public::OrdersController < ApplicationController
   else
     render :items
   end
-end    
-end
   
   def index
     @orders = Order.where(member_id: current_member.id).order(created_at: :desc).

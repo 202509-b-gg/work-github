@@ -1,1 +1,28 @@
-<h1>管理者トップページ(注文履歴一覧)作成注</h1>
+<div class="container my-5">
+  <h2 class="mb-4 border-bottom pb-2">注文履歴一覧</h2>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+            <td><%= order.user.name %></td>
+            <td><%= order.total_items %></td>
+            <td><%= order.status_i18n %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%= paginate @orders %>
+  </div>
+</div>
