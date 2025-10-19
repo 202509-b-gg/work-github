@@ -7,12 +7,12 @@ class Public::OrdersController < ApplicationController
   def confirm
     @cart_items = CartItem.where(member_id: current_member.id)
     @shipping_fee = 800 #送料は800円で固定
-    @selected_pay_method = params[:order][:pey_method]
+    @selected_pay_method = params[:order][:pay_method]
     
-    #以下、商品合計額の計算
+    # 商品合計額の計算
     ary = []
     @cart_items.each do |cart_item|
-      ary << cart_item.item.price*cart_item.quantity
+      ary << cart_item.item.price * cart_item.quantity
     end
     @cart_items_price = ary.sum
     
@@ -23,7 +23,7 @@ class Public::OrdersController < ApplicationController
       @selected_address = current_member.post_code + " " + current_member.address + " " + current_member.family_name + current_member.first_name
     when "registered_address"
       unless params[:order][:registered_address_id] == ""
-        selected = Address.find(params[:order][:registered_address_id]
+        selected = Address.find(params[:order][:registered_address_id])
         @selected_address = selected.post_code + " " + selected.address + " " + selected.name
       else	 
         render :new
@@ -36,7 +36,6 @@ class Public::OrdersController < ApplicationController
       end
     end     
   end
-    
   
   def create
     @order = Order.new
@@ -45,7 +44,7 @@ class Public::OrdersController < ApplicationController
     @cart_items = CartItem.where(member_id: current_member.id)
     ary = []
     @cart_items.each do |cart_item|
-      ary << cart_item.item.price*cart_item.quantity
+      ary << cart_item.item.price * cart_item.quantity
     end
     @cart_items_price = ary.sum
     @order.total_price = @order.shipping_fee + @cart_items_price
@@ -58,45 +57,45 @@ class Public::OrdersController < ApplicationController
     
     address_type = params[:order][:address_type]
     case address_type
-  when "member_address"
-    @order.post_code = current_member.post_code
-    @order.address = current_member.address
-    @order.name = current_member.family_name + current_member.first_name
-  when "registered_address"
-    Addresse.find(params[:order][:registered_address_id])
-    selected = Addresse.find(params[:order][:registered_address_id])
-    @order.post_code = selected.post_code
-    @order.address = selected.address
-    @order.name = selected.name
-  when "new_address"
-    @order.post_code = params[:order][:new_post_code]
-    @order.address = params[:order][:new_address]
-    @order.name = params[:order][:new_name]
-  end
-  
-  if @order.save
-    if @order.status == 0
-      @cart_items.each do |cart_item|
-        OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
-      end
-    else
-      @cart_items.each do |cart_item|
-        OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 1)
-      end
+    when "member_address"
+      @order.post_code = current_member.post_code
+      @order.address = current_member.address
+      @order.name = current_member.family_name + current_member.first_name
+    when "registered_address"
+      selected = Address.find(params[:order][:registered_address_id])
+      @order.post_code = selected.post_code
+      @order.address = selected.address
+      @order.name = selected.name
+    when "new_address"
+      @order.post_code = params[:order][:new_post_code]
+      @order.address = params[:order][:new_address]
+      @order.name = params[:order][:new_name]
     end
-    @cart_items.destroy_all
-    redirect_to complete_orders_path
-  else
-    render :items
-  end
+    
+    if @order.save
+      if @order.status == 0
+        @cart_items.each do |cart_item|
+          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
+        end
+      else
+        @cart_items.each do |cart_item|
+          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 1)
+        end
+      end
+      @cart_items.destroy_all
+      redirect_to complete_orders_path
+    else
+      render :items
+    end
+  end # ← createアクションのendを追加
   
   def index
-    @orders = Order.where(member_id: current_member.id).order(created_at: :desc).
+    @orders = Order.where(member_id: current_member.id).order(created_at: :desc)
   end
   
   def show
     @order = Order.find(params[:id])
-    @order_details= OrderDetail.where(order_id: @order.id)
+    @order_details = OrderDetail.where(order_id: @order.id)
   end 
   
   def thanks
@@ -104,7 +103,7 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name)
+    params.require(:order).permit(:pay_method, :post_code, :address, :name)
   end
   
-end 
+end
