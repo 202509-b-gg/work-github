@@ -7,8 +7,8 @@ class Public::CartItemsController < ApplicationController
   end
   def create
     # 1. パラメータから渡された商品を、ログイン中の顧客のカートアイテムから探す
-    @cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
     @item = Item.find(params[:cart_item][:item_id])
+    @cart_item = current_customer.cart_items.find_by(item_id: @item.id)
     if @cart_item
       # 2. カートアイテムが既に存在する場合 (同じ商品がカートにある場合)
       #   フォームから送られてきた数量を既存の数量に加算する
@@ -18,8 +18,10 @@ class Public::CartItemsController < ApplicationController
     else
       # 3. カートアイテムが存在しない場合 (カートにない新しい商品の場合)
       #   顧客に紐づいた新しいカートアイテムを作成する
-      @cart_item = current_customer.cart_items.build(cart_item_params)
-      @cart_item.price = @item.add_tax_price.to_s(:delimited)
+      @cart_item = current_customer.cart_items.new(
+      item_id: @item.id,
+      amount: params[:cart_item][:amount].to_i,
+      )
       unless @cart_item.save
         # 保存に失敗した場合の処理
         flash[:alert] = "カートへの追加に失敗しました。"
