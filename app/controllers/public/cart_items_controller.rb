@@ -1,42 +1,41 @@
 class Public::CartItemsController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_customer!
   
   def index
+    @cart_items = CartItem.all
   end
   def create
-    # 1. 現在のユーザーのカートを取得
-    #   (ApplicationControllerなどで`current_cart`メソッドを定義している想定)
-    @cart = current_user.cart || current_user.create_cart
-
-    # 2. カート内に既に同じ商品があるか確認
-    @cart_item = @cart.cart_items.find_by(item_id: params[:cart_item][:item_id])
-
+    # 1. パラメータから渡された商品を、ログイン中の顧客のカートアイテムから探す
+    @cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
+    @item = Item.find(params[:cart_item][:item_id])
     if @cart_item
-      # 3. 商品が既にカートにあれば、数量を追加して更新
-      new_quantity = @cart_item.quantity + params[:cart_item][:quantity].to_i
-      @cart_item.update(quantity: new_quantity)
+      # 2. カートアイテムが既に存在する場合 (同じ商品がカートにある場合)
+      #   フォームから送られてきた数量を既存の数量に加算する
+      new_amount = @cart_item.amount + params[:cart_item][:amount].to_i
+      @cart_item.update(amount: new_amount)
       flash[:notice] = "#{@cart_item.item.name}の数量を変更しました。"
     else
-      # 4. カートに新しい商品として追加
-      @cart_item = @cart.cart_items.build(cart_item_params)
-      if @cart_item.save
-        flash[:notice] = "#{@cart_item.item.name}をカートに追加しました。"
-      else
+      # 3. カートアイテムが存在しない場合 (カートにない新しい商品の場合)
+      #   顧客に紐づいた新しいカートアイテムを作成する
+      @cart_item = current_customer.cart_items.build(cart_item_params)
+      @cart_item.price = @item.add_tax_price.to_s(:delimited)
+      unless @cart_item.save
+        # 保存に失敗した場合の処理
         flash[:alert] = "カートへの追加に失敗しました。"
-        # 失敗した場合は商品詳細ページに戻る
         redirect_to item_path(params[:cart_item][:item_id]) and return
       end
+      flash[:notice] = "#{@cart_item.item.name}をカートに追加しました。"
     end
 
-    # 5. カートページにリダイレクト
-    redirect_to cart_path(@cart)
+    # 4. 処理成功後、カートアイテム一覧ページにリダイレクト
+    redirect_to cart_items_path # cart_itemsのindexページへのパスを想定
   end
 
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:item_id, :quantity)
+    params.require(:cart_item).permit(:item_id, :amout)
   end
 
   private
