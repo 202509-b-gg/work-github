@@ -1,17 +1,13 @@
 <div class="container-fluid py-5">
 
-  <!-- タイトル -->
-  <h3 class="col-lg-2 offset-lg-2 mb-4">
-    <span class="bg-light d-inline-block px-2">マイページ </span>
+  <h3 class="col-lg-3 offset-lg-2 mb-4">
+    <span class="bg-light d-inline-block px-2">
+      <%= @customer.last_name %> <%= @customer.first_name %>さんの会員詳細
+    </span>
   </h3>
 
-  <div class="row mb-2 align-items-center">
-    <h4 class="col-lg-1">登録情報</h4>
-    <%= link_to '編集する', edit_customer_information_path, method: :get, class: 'btn btn-success mb-2' %>
-  </div>
-
   <!-- 会員情報テーブル -->
-  <table class="table table-bordered mb-4 w-auto">
+  <table class="table mb-4 w-auto">
     <tbody>
       <tr>
         <th class="bg-light">氏名</th>

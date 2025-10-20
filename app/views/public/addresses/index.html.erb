@@ -1,25 +1,11 @@
 <div class="container-fluid py-5">
 
-  <h4 class="col-lg-2 offset-lg-2 mb-4">
+  <h3 class="col-lg-2 offset-lg-2 mb-4">
     <span class="bg-light d-inline-block px-2">配送先登録/一覧</span>
-  </h4>
+  </h3>
 
-  <!-- 新規登録フォーム -->
-  <%= form_with model: @address, local: true do |f| %>
-    <div class="mb-3 row">
-      <%= f.label :postal_code, '郵便番号(ハイフンなし)', class: 'col-lg-2 col-form-label' %>
-      <%= f.text_field :postal_code, class: 'form-control col-lg-2 ml-5' %>
-    </div>
-    <div class="mb-3 row">
-      <%= f.label :address, '住所', class: 'col-lg-2 col-form-label' %>
-      <%= f.text_field :address, class: 'form-control col-lg-3 ml-5' %>
-    </div>
-    <div class="mb-5 row">
-      <%= f.label :recipient_name, '宛名', class: 'col-lg-2 col-form-label' %>
-      <%= f.text_field :recipient_name, class: 'form-control col-lg-2 ml-5' %>
-      <%= f.submit '新規登録', class: 'btn btn-success col-lg-1 offset-lg-1' %>
-    </div>
-  <% end %>
+  <!-- 配送先登録フォーム -->
+  <%= render 'form', address: @address %>
 
   <!-- 登録済み住所一覧テーブル -->
   <table class="table table-bordered mb-4 w-auto">

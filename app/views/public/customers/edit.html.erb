@@ -1,8 +1,9 @@
 <div class="container-fluid py-5">
 
-  <h4 class="col-lg-2 offset-lg-2 mb-4">
+  <!-- タイトル -->
+  <h3 class="col-lg-2 offset-lg-2 mb-4">
     <span class="bg-light d-inline-block px-2">会員情報編集</span>
-  </h4>
+  </h3>
 
   <%= form_with model: @customer, url: customer_path(@customer), method: :patch, local: true do |f| %>
 
