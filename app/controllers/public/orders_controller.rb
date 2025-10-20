@@ -83,7 +83,7 @@ class Public::OrdersController < ApplicationController
         end
       end
       @cart_items.destroy_all
-      redirect_to complete_orders_path
+      redirect_to thanks_orders_path
     else
       render :items
     end
