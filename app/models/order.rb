@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  enum payment_method: { credit_card: 0, transfer: 1 }
+  enum payment_method: { credit_card: "credit_card", transfer: "transfer" }
   has_many :order_details, dependent: :destroy
   belongs_to :customer
 
@@ -7,6 +7,11 @@ class Order < ApplicationRecord
 
   def status_i18n
     I18n.t("enums.order.status.#{self.status}")
+  end
+
+  def payment_method_i18n
+    return "" if payment_method.nil?
+    I18n.t("enums.order.payment_method.#{payment_method}")
   end
 
   def self.payment_methods_i18n
@@ -31,5 +36,4 @@ class Order < ApplicationRecord
   def total_items
     order_details.sum(:amount)
   end
-
 end
