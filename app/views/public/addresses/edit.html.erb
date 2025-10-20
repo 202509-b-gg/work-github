@@ -1,34 +1,9 @@
-<h1>配送先編集</h1>
+<div class="container-fluid py-5">
 
-<%= form_with model: @address, local: true do |f| %>
+  <h3 class="col-lg-2 offset-lg-2 mb-4">
+    <span class="bg-light d-inline-block px-2">配送先編集</span>
+  </h3>
 
-  <%# 郵便番号の行 %>
-  <div class="row mb-3 align-items-center">
-    <%= f.label :postal_code, '郵便番号(ハイフンなし)', class: 'col-sm-3 col-form-label text-start' %>
-    <div class="col-sm-4">
-      <%= f.text_field :postal_code, class: 'form-control' %>
-    </div>
-  </div>
-
-  <%# 住所の行 %>
-  <div class="row mb-3 align-items-center">
-    <%= f.label :address, '住所', class: 'col-sm-3 col-form-label text-start' %>
-    <div class="col-sm-9">
-      <%= f.text_field :address, class: 'form-control' %>
-    </div>
-  </div>
-
-  <%# 宛名と保存ボタンの行 %>
-  <div class="row mb-4 align-items-center">
-    <%= f.label :recipient_name, '宛名', class: 'col-sm-3 col-form-label text-start' %>
-    <div class="col-sm-4">
-      <%= f.text_field :recipient_name, class: 'form-control' %>
-    </div>
-    
-    <%# 保存ボタン (右寄せにするため、残りの幅を使用) %>
-    <div class="col-sm-5 d-flex justify-content-end">
-      <%= f.submit '変更内容を保存', class: 'btn btn-success' %>
-    </div>
-  </div>
-
-<% end %>
+  <!-- 配送先編集フォーム -->
+  <%= render 'form', address: @address %>
+</div>
