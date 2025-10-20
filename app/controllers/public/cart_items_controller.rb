@@ -20,6 +20,7 @@ class Public::CartItemsController < ApplicationController
       #   顧客に紐づいた新しいカートアイテムを作成する
       @cart_item = current_customer.cart_items.new(
       item_id: @item.id,
+      
       amount: params[:cart_item][:amount].to_i,
       )
       unless @cart_item.save
