@@ -1,53 +1,49 @@
-<body class="bg-white">
-  <div class="d-flex justify-content-center flex-column col-lg-8">
+<div class="container-fluid py-5">
 
-    <h4 class="mb-4 fw-bold">配送先登録／一覧</h4>
+  <h4 class="col-lg-2 offset-lg-2 mb-4">
+    <span class="bg-light d-inline-block px-2">配送先登録/一覧</span>
+  </h4>
 
-    <!-- 新規登録フォーム -->
-    <div class="row mb-5">
-      <%= form_with model: @address, local: true, class: "row g-3 align-items-end" do |f| %>
-        <div class="col md-3">
-          <%= f.label :postal_code, '郵便番号(ハイフンなし)', class: 'form-label' %>
-          <%= f.text_field :postal_code, class: 'form-control' %>
-        </div>
-        <div class="col-md-5">
-          <%= f.label :address, '住所', class: 'form-label' %>
-          <%= f.text_field :address, class: 'form-control' %>
-        </div>
-        <div class="col-md-3">
-          <%= f.label :recipient_name, '宛名', class: 'form-label' %>
-          <%= f.text_field :recipient_name, class: 'form-control' %>
-        </div>
-        <div class="col-md-1 text-end">
-          <%= f.submit '新規登録', class: 'btn btn-success w-100' %>
-        </div>
-      <% end %>
+  <!-- 新規登録フォーム -->
+  <%= form_with model: @address, local: true do |f| %>
+    <div class="mb-3 row">
+      <%= f.label :postal_code, '郵便番号(ハイフンなし)', class: 'col-lg-2 col-form-label' %>
+      <%= f.text_field :postal_code, class: 'form-control col-lg-2 ml-5' %>
     </div>
+    <div class="mb-3 row">
+      <%= f.label :address, '住所', class: 'col-lg-2 col-form-label' %>
+      <%= f.text_field :address, class: 'form-control col-lg-3 ml-5' %>
+    </div>
+    <div class="mb-5 row">
+      <%= f.label :recipient_name, '宛名', class: 'col-lg-2 col-form-label' %>
+      <%= f.text_field :recipient_name, class: 'form-control col-lg-2 ml-5' %>
+      <%= f.submit '新規登録', class: 'btn btn-success col-lg-1 offset-lg-1' %>
+    </div>
+  <% end %>
 
-    <!-- 登録済み住所一覧テーブル -->
-    <table class="table table-bordered">
-      <thead>
+  <!-- 登録済み住所一覧テーブル -->
+  <table class="table table-bordered mb-4 w-auto">
+    <thead>
+      <tr class="">
+        <th class="bg-light">郵便番号</th>
+        <th class="bg-light">住所</th>
+        <th class="bg-light">宛名</th>
+        <th class="bg-light"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @addresses.each do |address| %>
         <tr>
-          <th style="width: 15%;">郵便番号</th>
-          <th style="width: 40%;">住所</th>
-          <th style="width: 20%;">宛名</th>
-          <th style="width: 25%;"></th>
+          <td><%= address.postal_code %></td>
+          <td><%= address.address %></td>
+          <td><%= address.recipient_name %></td>
+          <td class="">
+            <%= link_to '編集する', edit_address_path(address), class: 'btn btn-success btn-sm' %>
+            <%= link_to '削除する', address_path(address), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-sm ml-2' %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% @addresses.each do |address| %>
-          <tr>
-            <td><%= address.postal_code %></td>
-            <td><%= address.address %></td>
-            <td><%= address.recipient_name %></td>
-            <td class="d-flex justify-content-center flex-row">
-              <%= link_to '編集する', edit_address_path(address), class: 'btn btn-success btn-sm' %>
-              <%= link_to '削除する', address_path(address), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger btn-sm ml-2' %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <% end %>
+    </tbody>
+  </table>
 
-  </div>
-</body>
+</div>
