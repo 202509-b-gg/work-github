@@ -1,0 +1,38 @@
+<div class='container py-5'>
+  <div class='row'>
+      <div class='mx-auto'>
+        <div class="row">
+          <h4>商品一覧</h4>        
+          <div class="offset-md-4">
+            <%= link_to "新規登録", new_admin_item_path, class: 'btn btn-primary'%>
+          </div>
+        </div>
+          <table>
+            <thread>
+              <th>商品ID</th>
+              <th>商品名</th>
+              <th>税抜価格</th>
+              <th>ジャンル</th>
+              <th>ステータス</th>
+            </thread>
+            <% @items.each do |item| %>
+            <tbody>
+                <div>
+                  <td><%= item.id %></td>
+                  <td><%= link_to admin_item_path(item.id) do %>
+                      <%= item.name %>
+                      <% end %>
+                  </td>
+                  <td><%= "¥#{item.price}" %></td>
+                  <td></td>
+                  <td></td>
+                </div>
+            </tbody>
+            <% end %>
+          </table>
+          <div class="d-flex justify-content-center mt-3">
+            <%= paginate @items %>
+          </div>
+      </div>  
+  </div>
+</div>    
