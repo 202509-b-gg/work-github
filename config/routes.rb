@@ -34,7 +34,11 @@ Rails.application.routes.draw do
         get 'thanks'
       end
     end
-    resources :cart_items, only: [:index, :edit, :create, :update, :destroy]
+    resources :cart_items, only: [:index, :edit, :create, :update, :destroy] do
+      collection do
+      delete 'destroy_all'
+      end
+    end
   end
 
   # 管理者用リソース
