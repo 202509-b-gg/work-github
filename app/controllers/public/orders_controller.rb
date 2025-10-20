@@ -9,7 +9,7 @@ class Public::OrdersController < ApplicationController
     @shipping_cost = 800 #送料は800円で固定
     @selected_payment_method = params[:payment_method]
     
-    # 商品合計額の計算
+
     ary = []
     @cart_items.each do |cart_item|
       ary << cart_item.item.price * cart_item.amount
@@ -50,9 +50,9 @@ class Public::OrdersController < ApplicationController
     @order.total_payment = @order.shipping_cost + @cart_items_price
     @order.payment_method = params[:order][:payment_method]
     if @order.payment_method == "credit_card"
-      @order.status = 1
+      @order.status = "payment_confirmed"
     else
-      @order.status = 0
+      @order.status = "waiting_for_payment"
     end
     
     address_type = params[:order][:address_type]
@@ -73,7 +73,7 @@ class Public::OrdersController < ApplicationController
     end
     
     if @order.save
-      if @order.status == 0
+      if @order.status == "waiting_for_payment"
         @cart_items.each do |cart_item|
           OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, amount: cart_item.amount, making_status: 0)
         end
@@ -87,16 +87,21 @@ class Public::OrdersController < ApplicationController
     else
       render :items
     end
-  end # ← createアクションのendを追加
-  
-  def index
-    @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
   end
   
+  def index
+    @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc).page(params[:page]).per(10)
+  end
+  
+
   def show
+    # idが数字以外なら404
+    unless params[:id].to_s =~ /\A\d+\z/
+      render file: Rails.root.join('public', '404.html'), status: :not_found and return
+    end
     @order = Order.find(params[:id])
     @order_details = OrderDetail.where(order_id: @order.id)
-  end 
+  end
   
   def thanks
   end
