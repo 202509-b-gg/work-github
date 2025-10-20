@@ -7,42 +7,46 @@
   </h3>
 
   <!-- 会員情報テーブル -->
-  <table class="table mb-4 w-auto">
+  <table class="table table-borderless mb-4 w-auto">
     <tbody>
       <tr>
-        <th class="bg-light">氏名</th>
+        <th>氏名</th>
         <td><%= @customer.last_name %> <%= @customer.first_name %></td>
       </tr>
       <tr>
-        <th class="bg-light">カナ</th>
+        <th>カナ</th>
         <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
       </tr>
       <tr>
-        <th class="bg-light">郵便番号</th>
+        <th>郵便番号</th>
         <td><%= @customer.postal_code %></td>
       </tr>
       <tr>
-        <th class="bg-light">住所</th>
+        <th>住所</th>
         <td><%= @customer.address %></td>
       </tr>
       <tr>
-        <th class="bg-light">電話番号</th>
+        <th>電話番号</th>
         <td><%= @customer.telephone_number %></td>
       </tr>
       <tr>
-        <th class="bg-light">メールアドレス</th>
+        <th>メールアドレス</th>
         <td><%= @customer.email %></td>
+      </tr>
+      <tr>
+        <th>会員ステータス</th>
+        <td class="font-weight-bold">
+          <% if @customer.is_active %>
+            <span class="text-success">有効</span>
+          <% else %>
+            <span class="text-secondary">無効</span>
+          <% end %>
+        </td>
       </tr>
     </tbody>
   </table>
 
   <!-- ボタン -->
-  <div class="row mb-2 align-items-center">
-    <h4 class="col-lg-1">配送先</h4>
-    <%= link_to '一覧を見る', addresses_path, method: :get, class: 'btn btn-primary mb-2' %>
-  </div>
-  <div class="row align-items-center">
-    <h4 class="col-lg-1">注文履歴</h4>
-    <%= link_to '一覧を見る', orders_path, method: :get, class: 'btn btn-primary mb-2' %>
-  </div>
+    <%= link_to '編集する', edit_admin_customer_path(@customer), method: :get, class: 'btn btn-success mb-2' %>
+    <%= link_to '注文履歴一覧を見る', admin_root_path, method: :get, class: 'btn btn-primary mb-2' %>
 </div>
