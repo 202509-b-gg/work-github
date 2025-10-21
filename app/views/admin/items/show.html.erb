@@ -5,16 +5,24 @@
           <h4>商品詳細</h4>
         </div>
         <div class='row'>
-          <div class="product-image-area">
-            <%= image_tag @item.get_item_image, size:"300x200" %>
+          <div class="item-image-area">
+            <%= image_tag @item.get_item_image, size: "300x200" %>
           </div>
           <div class="description-scroll col-6 px-3">  
             <p><%= @item.name %></p>
             <p class="description-scroll"><%= @item.introduction %></p>
+            <p><%= @item.genre.name %></p>
             <div class="d-inline-flex align-items-end">
               <p class="fw-bold mb-0">
               <%= "#{@item.add_tax_price.to_s(:delimited)}（#{@item.price}）円" %>
               </p>
+            </div>
+            <div>
+              <% if @item.is_active=true %>
+                  販売中
+                <% else %>
+                  販売停止中
+              <% end %>
             </div>
           </div>
         </div>

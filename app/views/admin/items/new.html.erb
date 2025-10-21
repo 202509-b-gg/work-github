@@ -6,9 +6,9 @@
       <%= form_with model: [:admin, @item], local: true do |f| %>
 
         <div class="form-group row">
-          <%= f.label :image, "商品画像", class: "col-md-3 col-form-label" %>
+          <%= f.label :item_image, "商品画像", class: "col-md-3 col-form-label" %>
           <div class="col-md-9">
-            <%= f.file_field :image, class: "form-control-file" %>
+            <%= f.file_field :item_image, class: "form-control-file" %>
           </div>
         </div>
 
