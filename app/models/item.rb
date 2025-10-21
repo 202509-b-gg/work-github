@@ -10,7 +10,11 @@ class Item < ApplicationRecord
   validates :price,presence:true
 
   def get_item_image
-    (item_image.attached?) ? item_image : 'no_image.jpg'
+  if item_image.attached?
+    item_image
+  else
+    'no_image.jpg'
+  end
   end
 
   def add_tax_price
