@@ -1,36 +1,48 @@
 <div class='container py-5'>
   <div class='row'>
-      <div class='mx-auto'>
-        <div>
-          <h4>商品詳細</h4>
+    <div class='col-md-10 mx-auto'>
+      <div>
+        <h4>商品詳細</h4>
+      </div>
+      <div class='row mt-4'>
+        <div class="col-md-4">
+          <%= image_tag @item.get_item_image, size: "300x200" %>
         </div>
-        <div class='row'>
-          <div class="item-image-area">
-            <%= image_tag @item.get_item_image, size: "300x200" %>
-          </div>
-          <div class="description-scroll col-6 px-3">  
-            <p><%= @item.name %></p>
-            <p class="description-scroll"><%= @item.introduction %></p>
-            <p><%= @item.genre.name %></p>
-            <div class="d-inline-flex align-items-end">
-              <p class="fw-bold mb-0">
-              <%= "#{@item.add_tax_price.to_s(:delimited)}（#{@item.price}）円" %>
-              </p>
-            </div>
-            <div>
-              <% if @item.is_active=true %>
-                  販売中
-                <% else %>
-                  販売停止中
+
+        <div class="col-md-8">
+          <dl class="row">
+            <dt class="col-sm-4"><small>商品名</small></dt>
+            <dd class="col-sm-8"><%= @item.name %></dd>
+
+            <dt class="col-sm-4"><small>商品説明</small></dt>
+            <dd class="col-sm-8 description-scroll"><%= simple_format(@item.introduction) %></dd>
+
+            <dt class="col-sm-4"><small>ジャンル</small></dt>
+            <dd class="col-sm-8"><%= @item.genre.name %></dd>
+
+            <dt class="col-sm-4"><small>税込価格<br>（税抜価格）</small></dt>
+            <dd class="col-sm-8 h5">
+              <span class="font-weight-bold">
+                <%= "#{@item.add_tax_price.to_s(:delimited)}（#{@item.price.to_s(:delimited)}）円" %>
+              </span>
+            </dd>
+
+            <dt class="col-sm-4"><small>販売ステータス</small></dt>
+            <dd class="col-sm-8">
+              <% if @item.is_active %>
+                <span class="text-success font-weight-bold">販売中</span>
+              <% else %>
+                <span class="text-secondary font-weight-bold">販売停止中</span>
               <% end %>
-            </div>
-          </div>
+            </dd>
+          </dl>
         </div>
-        <div class="row mt-4">
-        <div class="col-md-8 offset-md-5">
-            <div>
-              <%= link_to "編集する", edit_admin_item_path(@item.id), class: 'btn btn-success'%>
-            </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-12 text-center">
+          <%= link_to "編集する", edit_admin_item_path(@item.id), class: 'btn btn-success btn-lg' %>
+        </div>
       </div>
     </div>
   </div>

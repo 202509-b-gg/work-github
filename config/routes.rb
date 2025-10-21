@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'genre/index'
+  end
   namespace :admin do
     get 'items/index'
     get 'items/new'

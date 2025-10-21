@@ -1,44 +1,49 @@
 <div class='container py-5'>
   <div class='row'>
-      <div class='mx-auto'>
-        <div class="row">
-          <h4>商品一覧</h4>        
-          <div class="offset-md-4">
-            <%= link_to "新規登録", new_admin_item_path, class: 'btn btn-primary'%>
-          </div>
+    <div class='col-10 mx-auto'>
+      <div class="row mb-3 align-items-center">
+        <div class="col-md-4">
+          <h4>商品一覧</h4>
         </div>
-          <table>
-            <thread>
-              <th>商品ID</th>
-              <th>商品名</th>
-              <th>税抜価格</th>
-              <th>ジャンル</th>
-              <th>ステータス</th>
-            </thread>
-            <% @items.each do |item| %>
-            <tbody>
-                <div>
-                  <td><%= item.id %></td>
-                  <td><%= link_to admin_item_path(item.id) do %>
-                      <%= item.name %>
-                      <% end %>
-                  </td>
-                  <td><%= "¥#{item.price}" %></td>
-                  <td><%= item.genre.name %></td>
-                  <td>
-                    <% if item.is_active=true %>
-                        販売中
-                      <% else %>
-                        販売停止中
-                    <% end %>
-                  </td>
-                </div>
-            </tbody>
-            <% end %>
-          </table>
-          <div class="d-flex justify-content-center mt-3">
-            <%= paginate @items %>
-          </div>
-      </div>  
+        <div class="col-md-8 text-right">
+          <%= link_to "新規登録", new_admin_item_path, class: 'btn btn-primary'%>
+        </div>
+      </div>
+
+      <table class="table table-hover">
+        <thead> <tr>
+            <th style="width: 10%;">商品ID</th>
+            <th style="width: 30%;">商品名</th>
+            <th style="width: 20%;">税抜価格</th>
+            <th style="width: 20%;">ジャンル</th>
+            <th style="width: 20%;">ステータス</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td>
+                <%= link_to item.name, admin_item_path(item.id) %>
+              </td>
+              <td><%= "¥#{item.price.to_s(:delimited)}" %></td>
+              <td><%= item.genre.name %></td>
+              <td>
+                <% if item.is_active %>
+                  <span class="text-success font-weight-bold">販売中</span>
+                <% else %>
+                  <span class="text-secondary">販売停止中</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-center mt-3">
+        <%= paginate @items %>
+      </div>
+    </div>
   </div>
-</div>    
+</div>
