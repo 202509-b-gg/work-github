@@ -13,8 +13,10 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-      redirect_to my_page_path, notice: "更新しました"
+      flash[:notice] = "会員情報の更新が完了しました。"
+      redirect_to my_page_path
     else
+      flash.now[:alert] = "会員情報の更新が失敗しました。"
       render :edit
     end
   end
@@ -25,10 +27,12 @@ class Public::CustomersController < ApplicationController
   def withdraw
     @customer = current_customer
     if @customer.update(is_active: false)
+      flash[:notice] = "退会処理が完了しました。"
       # セッションをクリアしてログアウトさせる
       reset_session
       redirect_to root_path
     else
+      flash.now[:alert] = "退会処理が失敗しました。"
       render :unsubscribe
     end
   end
