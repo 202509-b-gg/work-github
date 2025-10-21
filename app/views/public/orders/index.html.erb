@@ -2,46 +2,46 @@
   <!-- タイトル：画像のような装飾 -->
   <div class="row">
     <div class="col-md-12 text-left">
-      <h3 style="display: inline-block; padding: 0 30px; margin-bottom: 20px;">
-        <span class="bg-light d-inline-block px-2">注文履歴一覧</span>
+      <h3 class="order-history-title">
+        <span class="order-history-title-text">注文履歴一覧</span>
       </h3>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
-      <table class="table" style="border: 2px solid #444;">
+      <table class="table order-history-table">
         <thead>
-          <tr style="background: #f6f6f6;">
-            <th style="border: 1px solid #444;">注文日</th>
-            <th style="border: 1px solid #444;">配送先</th>
-            <th style="border: 1px solid #444;">注文商品</th>
-            <th style="border: 1px solid #444;">支払金額</th>
-            <th style="border: 1px solid #444;">ステータス</th>
-            <th style="border: 1px solid #444;">注文詳細</th>
+          <tr>
+            <th>注文日</th>
+            <th>配送先</th>
+            <th>注文商品</th>
+            <th>支払金額</th>
+            <th>ステータス</th>
+            <th>注文詳細</th>
           </tr>
         </thead>
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-              <td style="border: 1px solid #444; white-space: nowrap;"><%= order.created_at.strftime('%Y/%m/%d') %></td>
-              <td style="border: 1px solid #444;">
+              <td class="order-date"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+              <td>
                 〒<%= order.postal_code %><br>
                 <%= order.address %><br>
                 <%= order.name %>
               </td>
-              <td style="border: 1px solid #444;">
+              <td>
                 <ul class="list-unstyled mb-0">
                   <% order.order_details.each do |order_detail| %>
                     <li><%= order_detail.item.name %></li>
                   <% end %>
                 </ul>
               </td>
-              <td style="border: 1px solid #444; font-weight: bold;">
+              <td class="order-total-payment">
                 <%= number_to_currency(order.total_payment, unit: "円", precision: 0, format: "%n%u") %>
               </td>
-              <td style="border: 1px solid #444;"><%= order.status_i18n %></td>
-              <td style="border: 1px solid #444;">
-                <%= link_to "表示する", order_path(order.id), class: "btn btn-info", style: "width: 90px;" %>
+              <td><%= order.status_i18n %></td>
+              <td>
+                <%= link_to "表示する", order_path(order.id), class: "btn btn-info" %>
               </td>
             </tr>
           <% end %>

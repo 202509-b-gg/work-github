@@ -21,10 +21,10 @@ class Public::OrdersController < ApplicationController
     case @address_type
     when "customer_address"
       @selected_address = current_customer.postal_code + " " + current_customer.address + " " + current_customer.last_name + current_customer.first_name
-    when "registered_address"
-      unless params[:order][:registered_address_id] == ""
-        selected = Address.find(params[:order][:registered_address_id])
-        @selected_address = selected.postal_code + " " + selected.address + " " + selected.name
+    when "address"
+      unless params[:address_id] == ""
+        selected = Address.find(params[:address_id])
+        @selected_address = selected.postal_code + " " + selected.address + " " + selected.recipient_name
       else	 
         render :new
       end
@@ -63,11 +63,11 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
-    when "registered_address"
-      selected = Address.find(params[:order][:registered_address_id])
+    when "address"
+      selected = Address.find(params[:order][:address_id])
       @order.postal_code = selected.postal_code
       @order.address = selected.address
-      @order.name = selected.name
+      @order.name = selected.recipient_name
     when "new_address"
       @order.postal_code = params[:order][:new_postal_code]
       @order.address = params[:order][:new_address]
