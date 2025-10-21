@@ -10,13 +10,14 @@
   font-size: 1.4em;
   font-weight: normal;
   letter-spacing: 0.08em;
-  margin-bottom: 30px;
   padding: 8px 0;
 }
 .order-form-title-text {
   background: #eee;
   padding: 8px 0;
   display: inline-block;
+  padding: 0 30px;
+  margin-bottom: 20px
 }
 
 .order-form-section {

@@ -1,0 +1,107 @@
+.order-confirm-container {
+  max-width: 900px;
+  margin: 40px auto 0;
+  padding: 0;
+  background: #fff;
+}
+
+.order-confirm-title {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: normal;
+  background: #eee;
+  display: inline-block;
+  padding: 8px 40px;
+  margin-bottom: 30px;
+}
+
+.order-confirm-tables {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.order-confirm-table {
+  border-collapse: collapse;
+  border: 2px solid #444;
+  background: #fff;
+}
+
+.order-confirm-table-items {
+  width: 60%;
+  min-width: 440px;
+}
+
+.order-confirm-table-billing {
+  width: 32%;
+  min-width: 220px;
+}
+
+.order-confirm-table th,
+.order-confirm-table td {
+  border: 1px solid #444;
+  padding: 6px;
+}
+
+.order-confirm-table thead tr {
+  background: #f6f6f6;
+}
+
+.order-confirm-table .item-name {
+  font-weight: bold;
+}
+
+.order-confirm-table .item-image {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.order-confirm-table .item-price,
+.order-confirm-table .item-subtotal,
+.order-confirm-table .billing-value {
+  text-align: right;
+}
+
+.order-confirm-table .item-amount {
+  text-align: center;
+}
+
+.order-confirm-table .billing-label {
+  background: #f6f6f6;
+}
+
+.order-confirm-info {
+  margin: 40px 0 30px 0;
+}
+
+.order-confirm-payment,
+.order-confirm-address {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+}
+
+.order-confirm-address .info-value {
+  display: block;
+  margin-top: 8px;
+}
+
+.info-label {
+  margin-right: 20px;
+}
+
+.order-confirm-btn-area {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.order-confirm-btn {
+  background: #43c25f;
+  color: #fff;
+  font-size: 1.3em;
+  padding: 12px 38px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+}

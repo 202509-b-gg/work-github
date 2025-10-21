@@ -10,6 +10,17 @@
           <%= image_tag("ながのCAKE_ロゴ.png", alt: "ながのCAKE ロゴ", class: "cake-logo") %>
         <% end %>
       <% end %>
+
+      <% if customer_signed_in? %>
+        <div class="flex-grow-1" style="font-size:1.05em;">
+          <span style="position: relative; top: 2px; left: 220px; padding: 2px 8px;">
+            ようこそ、<%= current_customer.last_name %>さん！
+          </span>
+        </div>
+      <% else %>
+        <div class="flex-grow-1"></div>
+      <% end %>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

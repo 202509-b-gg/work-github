@@ -1,0 +1,98 @@
+.order-history-detail-container {
+  max-width: 950px;
+  margin: 40px auto 0;
+  padding: 0 10px 50px 10px;
+  background: #fff;
+}
+.order-history-detail-title {
+  text-align: left;
+  margin-bottom: 24px;
+}
+.order-history-detail-title span {
+  background: #f8f9fa;
+  display: inline-block;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.order-history-detail-main {
+  display: flex;
+  gap: 40px;
+  justify-content: flex-start;
+  margin-bottom: 40px;
+}
+.order-history-detail-info {
+  width: 60%;
+}
+.order-history-detail-billing {
+  width: 32%;
+}
+.section-label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 1.1em;
+}
+.order-history-detail-info-table,
+.order-history-detail-billing-table,
+.order-history-detail-items-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 0;
+}
+.order-history-detail-info-table th,
+.order-history-detail-info-table td,
+.order-history-detail-billing-table td,
+.order-history-detail-items-table th,
+.order-history-detail-items-table td {
+  border: 1.5px solid #444;
+  padding: 8px 10px;
+  font-size: 1em;
+  white-space: nowrap
+}
+
+.order-history-detail-info-table th {
+  width: 100px;
+  background: #f6f6f6;
+  text-align: left;
+  font-weight: normal;
+}
+.order-history-detail-info-table td {
+  background: #fff;
+}
+.order-history-detail-billing-table {
+  min-width: 190px;
+}
+.order-history-detail-billing-table .billing-label {
+  background: #f6f6f6;
+  width: 90px;
+}
+.order-history-detail-billing-table .billing-value {
+  text-align: right;
+  background: #fff;
+  width: 90px;
+}
+.order-history-detail-items {
+  margin-top: 40px;
+}
+.order-history-detail-items-table th {
+  background: #f6f6f6;
+  font-weight: normal;
+}
+.order-history-detail-items-table td,
+.order-history-detail-items-table th {
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .order-history-detail-main {
+    flex-direction: column;
+    gap: 0;
+  }
+  .order-history-detail-info,
+  .order-history-detail-billing {
+    width: 100%;
+  }
+  .order-history-detail-billing {
+    margin-top: 24px;
+  }
+}

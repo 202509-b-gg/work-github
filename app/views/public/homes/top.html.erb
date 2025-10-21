@@ -30,18 +30,22 @@
 
     <h2 class="section-title">新着商品</h2>
     <div class="product-list-row">
-      <% 4.times do %>
-        <div class="d-flex flex-column align-items-center">
+      <% Item.order(updated_at: :desc).limit(4).each do |item| %>
+        <%= link_to item_path(item), class: "d-flex flex-column align-items-center text-decoration-none text-dark" do %>
           <div class="product-img-box">
-            <%= image_tag "no_image.jpg", alt: "NO IMAGE", class: "product-placeholder-img" %>
+            <% if item.item_image.attached? %>
+              <%= image_tag item.item_image, alt: item.name, class: "product-placeholder-img" %>
+            <% else %>
+              <%= image_tag "no_image.jpg", alt: "NO IMAGE", class: "product-placeholder-img" %>
+            <% end %>
           </div>
-          <div class="product-name">商品名</div>
-          <div class="product-price">¥0,000</div>
-        </div>
+          <div class="product-name"><%= item.name %></div>
+          <div class="product-price">¥<%= number_with_delimiter(item.price) %></div>
+        <% end %>
       <% end %>
     </div>
     <div class="all-products-link">
-      <span style="color: gray;">全ての商品を見る＞（準備中）</span>
+      <%= link_to '全ての商品を見る＞', items_path, style: 'color: #007bff; text-decoration: underline; font-weight: bold;' %>
     </div>
   </main>
 </div>
