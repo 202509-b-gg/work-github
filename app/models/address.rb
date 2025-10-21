@@ -3,7 +3,7 @@ class Address < ApplicationRecord
   validates :customer, presence: true
 
   def address_display
-    '〒' + postal_code + ' ' + address + ' ' + name
+    '〒' + postal_code + ' ' + address + ' ' + recipient_name
   end
   
 end

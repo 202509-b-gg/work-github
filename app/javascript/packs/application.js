@@ -14,6 +14,7 @@ import "bootstrap";
 import "../stylesheets/application"; 
 import "../stylesheets/public_homes_top.css";
 import "../stylesheets/custom_header";
+import "../stylesheets/order_form.css"
 
 Rails.start()
 Turbolinks.start()

@@ -29,8 +29,8 @@ class Public::OrdersController < ApplicationController
         render :new
       end
     when "new_address"
-      unless params[:order][:new_postal_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-        @selected_address = params[:order][:new_postal_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
+      unless params[:new_postal_code] == "" && params[:new_address] == "" && params[:new_recipient_name] == ""
+        @selected_address = params[:new_postal_code] + " " + params[:new_address] + " " + params[:new_recipient_name]
       else
         render :new
       end
@@ -71,7 +71,7 @@ class Public::OrdersController < ApplicationController
     when "new_address"
       @order.postal_code = params[:order][:new_postal_code]
       @order.address = params[:order][:new_address]
-      @order.name = params[:order][:new_name]
+      @order.name = params[:order][:new_recipient_name]
     end
     
     if @order.save
