@@ -12,6 +12,8 @@
   <body>
     <%= render 'layouts/header' %>
       <main>
+        <!-- フラッシュメッセージの表示 -->
+        <p id="notice"><%= notice %></p>
         <%= yield %>
       </main>
     <%= render 'layouts/footer' %>

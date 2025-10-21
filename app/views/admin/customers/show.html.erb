@@ -6,47 +6,73 @@
     </span>
   </h3>
 
-  <!-- 会員情報テーブル -->
-  <table class="table table-borderless mb-4 w-auto">
-    <tbody>
-      <tr>
-        <th>氏名</th>
-        <td><%= @customer.last_name %> <%= @customer.first_name %></td>
-      </tr>
-      <tr>
-        <th>カナ</th>
-        <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
-      </tr>
-      <tr>
-        <th>郵便番号</th>
-        <td><%= @customer.postal_code %></td>
-      </tr>
-      <tr>
-        <th>住所</th>
-        <td><%= @customer.address %></td>
-      </tr>
-      <tr>
-        <th>電話番号</th>
-        <td><%= @customer.telephone_number %></td>
-      </tr>
-      <tr>
-        <th>メールアドレス</th>
-        <td><%= @customer.email %></td>
-      </tr>
-      <tr>
-        <th>会員ステータス</th>
-        <td class="font-weight-bold">
-          <% if @customer.is_active %>
-            <span class="text-success">有効</span>
-          <% else %>
-            <span class="text-secondary">無効</span>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="mb-3 row">
+    <label class="col-lg-1 offset-lg-1 col-form-label">会員ID</label>
+    <div class="col-lg-2 col-form-label">
+      <%= @customer.id %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-lg-1 offset-lg-1 col-form-label">氏名</label>
+    <div class="col-lg-6 col-form-label">
+      <%= @customer.last_name %> <%= @customer.first_name %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-lg-1 offset-lg-1 col-form-label">フリガナ</label>
+    <div class="col-lg-6 col-form-label">
+      <%= @customer.last_name_kana %> <%= @customer.first_name_kana %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-lg-1 offset-lg-1 col-form-label">郵便番号</label>
+    <div class="col-lg-6 col-form-label">
+      <%= @customer.postal_code %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-lg-1 offset-lg-1 col-form-label">住所</label>
+    <div class="col-lg-6 col-form-label">
+      <%= @customer.address %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-lg-1 offset-lg-1 col-form-label">電話番号</label>
+    <div class="col-lg-6 col-form-label">
+      <%= @customer.telephone_number %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-lg-1 offset-lg-1 col-form-label">メールアドレス</label>
+    <div class="col-lg-6 col-form-label">
+      <%= @customer.email %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-lg-1 offset-lg-1 col-form-label">会員ステータス</label>
+    <div class="col-lg-1 col-form-label">
+      <% if @customer.is_active %>
+        <span class="text-success">有効</span>
+      <% else %>
+        <span class="text-secondary">無効</span>
+      <% end %>
+    </div>
+  </div>
 
   <!-- ボタン -->
-    <%= link_to '編集する', edit_admin_customer_path(@customer), method: :get, class: 'btn btn-success mb-2' %>
-    <%= link_to '注文履歴一覧を見る', admin_root_path, method: :get, class: 'btn btn-primary mb-2' %>
+  <div class="mb-3 row">
+    <div class="col-lg-1 offset-lg-2">
+      <%= link_to '編集する', edit_admin_customer_path(@customer), method: :get, class: 'btn btn-success mb-2' %>
+    </div>
+    <div class="col-lg-2">
+      <%= link_to '注文履歴一覧を見る', admin_root_path, method: :get, class: 'btn btn-primary mb-2' %>
+    </div>
+  </div>
 </div>

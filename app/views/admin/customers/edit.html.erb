@@ -9,7 +9,7 @@
   <!-- 会員ID -->
     <div class="mb-3 row">
       <label class="col-lg-1 offset-lg-1 col-form-label">会員ID</label>
-      <div class="col-lg-1">
+      <div class="col-lg-1 col-form-label">
         <%= @customer.id %>
       </div>
     </div>
@@ -72,7 +72,7 @@
 
     <!-- 会員ステータス -->
     <div class="mb-4 row">
-      <%= f.label :is_active, "会員ステータス", class: "col-lg-1 offset-lg-1 col-form-label"%>
+      <%= f.label :is_active, "会員ステータス", class: "col-lg-1 offset-lg-1"%>
       <div class="col-lg-2">
         <div class="form-check form-check-inline">
           <%= f.radio_button :is_active, true, id: 'is_active_true', class: 'form-check-input' %>
