@@ -18,7 +18,7 @@ class Public::AddressesController < ApplicationController
     if @address.save
       redirect_to addresses_path
     else
-      render 'index'
+      render :index
     end
   end
 
@@ -27,7 +27,7 @@ class Public::AddressesController < ApplicationController
     if @address.update(address_params)
       redirect_to addresses_path
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -36,7 +36,7 @@ class Public::AddressesController < ApplicationController
     if @address.destroy
       redirect_to addresses_path
     else
-      render 'index'
+      render :index
     end
   end
 
