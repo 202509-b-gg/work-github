@@ -7,10 +7,10 @@
 
       <h4>支払い方法</h4>
       <%= f.radio_button :payment_method, 'credit_card', checked: true %>
-      <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
+      <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], {value: :credit_card} %>
       <br>
       <%= f.radio_button :payment_method, 'transfer' %>
-      <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
+      <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], {value: :transfer} %>
 
       <h4>お届け先</h4>
       <%= f.radio_button :address_type, "customer_address", checked: true %>

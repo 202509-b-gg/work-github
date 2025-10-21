@@ -9,6 +9,11 @@ class Order < ApplicationRecord
     I18n.t("enums.order.status.#{self.status}")
   end
 
+  def payment_method_i18n
+    return "" if payment_method.nil?
+    I18n.t("enums.order.payment_method.#{payment_method}")
+  end
+
   def self.payment_methods_i18n
     {
       credit_card: I18n.t('enums.order.payment_method.credit_card'),
@@ -31,5 +36,4 @@ class Order < ApplicationRecord
   def total_items
     order_details.sum(:amount)
   end
-
 end
