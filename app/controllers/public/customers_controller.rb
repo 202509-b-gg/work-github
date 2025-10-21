@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
-  # before_action :authenticate_customer!
+  # ログイン必須
+  before_action :authenticate_customer!
 
   def show
     @customer = current_customer
@@ -28,7 +29,7 @@ class Public::CustomersController < ApplicationController
       reset_session
       redirect_to root_path
     else
-      render 'unsubscribe'
+      render :unsubscribe
     end
   end
 
