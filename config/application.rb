@@ -18,5 +18,13 @@ module WorkGithub
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    
+    # field_with_errors を挿入されないようにする
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+    
+    # field_with_errors によるレイアウト崩れ防止（divではなく、span で囲むようにする）
+    # config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+    #   "<span class=\"field_with_errors\">#{html_tag}</span>".html_safe
+    # end
   end
 end
