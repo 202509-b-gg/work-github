@@ -8,6 +8,8 @@ class Customer < ApplicationRecord
 
 
   has_many :cart_items, dependent: :destroy #カート機能とのアソシエーション
+
+  has_many :orders
   
   # is_activeがfalseの場合はログイン不可にする
   def active_for_authentication?

@@ -1,10 +1,16 @@
 <div class="container my-5">
-  <h2 class="mb-4 border-bottom pb-2 text-left">注文履歴詳細</h2>
+  <h3 class="mb-4 pb-2">
+    <span class="bg-light d-inline-block px-2">注文履歴一覧</span>
+  </h3>
   <div class="mb-4" style="max-width: 700px;">
     <div class="row mb-2">
       <div class="col-auto" style="font-weight:bold;">購入者</div>
       <div class="col-auto">
-        <%= [@order.customer&.last_name, @order.customer&.first_name].compact.join(" ") %>
+        <% if @order.customer.present? %>
+          <%= link_to [@order.customer.last_name, @order.customer.first_name].compact.join(" "), admin_customer_orders_path(@order.customer), style: "text-decoration: underline; color: inherit;" %>
+        <% else %>
+          不明
+        <% end %>
       </div>
     </div>
     <div class="row mb-2">
@@ -43,7 +49,7 @@
     <div class="col-9" style="min-width:400px;">
       <div class="table-responsive">
         <table class="table table-bordered align-middle mb-0" style="background: #fff;">
-          <thead class="table-light">
+          <thead class="table-light" style="background: #f5f5f5;">
             <tr>
               <th>商品名</th>
               <th>単価（税込）</th>
