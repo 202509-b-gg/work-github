@@ -3,21 +3,20 @@ class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
   
   def index
-    @cart_items = CartItem.all
+    @cart_items = CartItem.where(customer_id: current_customer.id)
   end
+  
   def create
     # 1. パラメータから渡された商品を、ログイン中の顧客のカートアイテムから探す
     @item = Item.find(params[:cart_item][:item_id])
     @cart_item = current_customer.cart_items.find_by(item_id: @item.id)
     if @cart_item
       # 2. カートアイテムが既に存在する場合 (同じ商品がカートにある場合)
-      #   フォームから送られてきた数量を既存の数量に加算する
       new_amount = @cart_item.amount + params[:cart_item][:amount].to_i
       @cart_item.update(amount: new_amount)
       flash[:notice] = "#{@cart_item.item.name}の数量を変更しました。"
     else
       # 3. カートアイテムが存在しない場合 (カートにない新しい商品の場合)
-      #   顧客に紐づいた新しいカートアイテムを作成する
       @cart_item = current_customer.cart_items.new(
       item_id: @item.id,
       
@@ -30,8 +29,7 @@ class Public::CartItemsController < ApplicationController
       end
       flash[:notice] = "#{@cart_item.item.name}をカートに追加しました。"
     end
-    # 4. 処理成功後、カートアイテム一覧ページにリダイレクト
-    redirect_to cart_items_path # cart_itemsのindexページへのパスを想定
+    redirect_to cart_items_path 
   end
 
   def update
