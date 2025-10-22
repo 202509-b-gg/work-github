@@ -7,5 +7,6 @@ class Public::ItemsController < ApplicationController
   def index
     @allitems = Item.where(is_active: true)
     @items = Item.where(is_active: true).page(params[:page])
+    @genres = Genre.limit(10)
   end
 end

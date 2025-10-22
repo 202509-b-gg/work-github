@@ -1,10 +1,10 @@
 <div class='container py-5'>
   <div class='row'>
      <%= render 'index' %>
-      <div class='col-md-10'>
+      <div class='col-md-9'>
         <div class="row">
-          <h4>商品一覧</h4>
-          <p><%= "(全#{@genre_allitems.count}件)" %></p>
+          <h4><%= @genre.name %>の商品一覧</h4>
+          <p><%= "(全#{@genre.items.where(is_active: true).count}件)" %></p>
         </div>
           <div class="row">
             <% @items.each do |item| %>

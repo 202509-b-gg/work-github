@@ -1,11 +1,12 @@
 class Public::GenresController < ApplicationController
   def index
-		@genres = Genre.limit(10)
+		@genres = Genre.limit(8)
   end
 
 	def show
-    @genre = Item.where(is_active: true)
-    @items = Item.where(is_active: true).page(params[:page])
+    @genre = Genre.find(params[:id])
+    @genres = Genre.limit(8)
+    @items = @genre.items.where(is_active: true).page(params[:page])
   end
 
 end
