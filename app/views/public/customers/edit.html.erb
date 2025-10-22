@@ -6,8 +6,8 @@
   </h3>
 
   <div class="row-lg-3 offset-lg-2">
-
-    <%= form_with model: @customer, url: customer_path(@customer), method: :patch, local: true do |f| %>
+  
+    <%= form_with model: @customer, method: :patch, local: true do |f| %>
 
       <!-- 氏名 -->
       <div class="mb-3 row">
@@ -72,6 +72,7 @@
           <%= link_to "退会する", unsubscribe_customer_path, class: "btn btn-danger" %>
         </div>
       </div>
+
     <% end %>
   </div>
 </div>

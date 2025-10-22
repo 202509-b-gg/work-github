@@ -20,10 +20,10 @@
     <div class="mb-3 row">
       <%= f.label :last_name, "氏名", class: "col-lg-1 offset-lg-1 col-form-label"%>
       <div class="col-lg-1">
-        <%= f.text_field :last_name, class: "form-control", placeholder: "令和" %>
+        <%= f.text_field :last_name, class: "form-control", style:"width: 150px;", placeholder: "令和" %>
       </div>
       <div class="col-lg-1">
-        <%= f.text_field :first_name, class: "form-control", placeholder: "道子" %>
+        <%= f.text_field :first_name, class: "form-control", style:"width: 150px;", placeholder: "道子" %>
       </div>
     </div>
 
@@ -31,10 +31,10 @@
     <div class="mb-3 row">
       <%= f.label :last_name_kana, "フリガナ", class: "col-lg-1 offset-lg-1 col-form-label"%>
       <div class="col-lg-1">
-        <%= f.text_field :last_name_kana, class: "form-control", placeholder: "レイワ" %>
+        <%= f.text_field :last_name_kana, class: "form-control", style:"width: 150px;", placeholder: "レイワ" %>
       </div>
       <div class="col-lg-1">
-        <%= f.text_field :first_name_kana, class: "form-control", placeholder: "ミチコ" %>
+        <%= f.text_field :first_name_kana, class: "form-control", style:"width: 150px;", placeholder: "ミチコ" %>
       </div>
     </div>
 
@@ -42,7 +42,7 @@
     <div class="mb-3 row">
       <%= f.label :postal_code, "郵便番号", class: "col-lg-1 offset-lg-1 col-form-label"%>
       <div class="col-lg-1">
-        <%= f.text_field :postal_code, class: "form-control" %>
+        <%= f.text_field :postal_code, class: "form-control", style:"width: 150px;"%>
       </div>
     </div>
 
@@ -50,7 +50,7 @@
     <div class="mb-3 row">
       <%= f.label :address, "住所", class: "col-lg-1 offset-lg-1 col-form-label"%>
       <div class="col-lg-3">
-        <%= f.text_field :address, class: "form-control" %>
+        <%= f.text_field :address, class: "form-control", style:"width: 600px;" %>
       </div>
     </div>
 
@@ -58,7 +58,7 @@
     <div class="mb-3 row">
       <%= f.label :telephone_number, "電話番号", class: "col-lg-1 offset-lg-1 col-form-label"%>
       <div class="col-lg-1">
-        <%= f.text_field :telephone_number, class: "form-control" %>
+        <%= f.text_field :telephone_number, class: "form-control", style:"width: 150px;" %>
       </div>
     </div>
 
@@ -66,7 +66,7 @@
     <div class="mb-4 row">
       <%= f.label :email, "メールアドレス", class: "col-lg-1 offset-lg-1 col-form-label"%>
       <div class="col-lg-2">
-        <%= f.email_field :email, class: "form-control" %>
+        <%= f.email_field :email, class: "form-control", style:"width: 425px;" %>
       </div>
     </div>
 

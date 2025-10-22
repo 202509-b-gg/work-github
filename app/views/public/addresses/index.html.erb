@@ -4,10 +4,10 @@
     <span class="bg-light d-inline-block px-2">配送先登録/一覧</span>
   </h3>
 
-  <div class="row-lg-3 offset-lg-2">
+  <!-- 配送先登録フォーム -->
+  <%= render 'form', address: @address %>
 
-    <!-- 配送先登録フォーム -->
-    <%= render 'form', address: @address %>
+  <div class="row-lg-3 offset-lg-2">
 
     <!-- 登録済み住所一覧テーブル -->
     <table class="table table-bordered mb-4 w-auto">

@@ -19,12 +19,14 @@ module WorkGithub
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     
-    # field_with_errors を挿入されないようにする
-    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
-    
-    # field_with_errors によるレイアウト崩れ防止（divではなく、span で囲むようにする）
-    # config.action_view.field_error_proc = Proc.new do |html_tag, instance|
-    #   "<span class=\"field_with_errors\">#{html_tag}</span>".html_safe
-    # end
+    # field_with_errors によるレイアウト崩れ防止
+    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+      # NokogiriというHTMLパサーを使用して文字列のHTMLタグをDOM（構造）として解析する
+      html = Nokogiri::HTML::DocumentFragment.parse(html_tag)
+      # Nokogiriで解析したHTML要素に対して、is-invalid クラスを追加する
+      html.children.add_class('is-invalid')
+      # html.to_htmlで再びHTML形式に戻す、.html_safeでHTMLとしてそのまま（エスケープを無効化して）出力させる
+      html.to_html.html_safe
+    end
   end
 end
