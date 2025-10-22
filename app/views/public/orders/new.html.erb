@@ -36,7 +36,7 @@
           登録済住所から選択
         </label>
         <div class="order-form-info">
-          <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display), {}, { class: "order-form-select" } %>
+          <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display), {}, { class: "order-form-select" } %>
         </div>
 
         <label>
