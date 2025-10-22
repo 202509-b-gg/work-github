@@ -2,6 +2,13 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
   
   def new
+    if current_customer.cart_items.empty?
+      redirect_to cart_items_path, alert: "カートが空のため、注文できません。"
+      return
+    end
+
+    @order = Order.new
+    @addresses = Address.where(customer_id: current_customer.id)
   end
   
   def confirm
@@ -22,6 +29,12 @@ class Public::OrdersController < ApplicationController
     when "customer_address"
       @selected_address = current_customer.postal_code + " " + current_customer.address + " " + current_customer.last_name + current_customer.first_name
     when "address"
+
+      if current_customer.addresses.empty?
+        flash[:alert] = "登録済み住所がありません。"
+        redirect_to new_order_path and return
+      end
+
       unless params[:address_id] == ""
         selected = Address.find(params[:address_id])
         @selected_address = selected.postal_code + " " + selected.address + " " + selected.recipient_name
@@ -29,10 +42,11 @@ class Public::OrdersController < ApplicationController
         render :new
       end
     when "new_address"
-      unless params[:new_postal_code] == "" && params[:new_address] == "" && params[:new_recipient_name] == ""
-        @selected_address = params[:new_postal_code] + " " + params[:new_address] + " " + params[:new_recipient_name]
+      if params[:new_postal_code].blank? || params[:new_address].blank? || params[:new_recipient_name].blank?
+        flash[:alert] = "新しいお届け先のすべての項目を入力してください。"
+        redirect_to new_order_path and return
       else
-        render :new
+        @selected_address = params[:new_postal_code] + " " + params[:new_address] + " " + params[:new_recipient_name]
       end
     end     
   end
