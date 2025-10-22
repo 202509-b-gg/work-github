@@ -15,6 +15,11 @@ class Admin::OrdersController < ApplicationController
     redirect_to admin_order_path(@order)
   end
 
+  def index
+    @customer = Customer.find(params[:customer_id])
+    @orders = @customer.orders.order(created_at: :desc).page(params[:page]).per(10)
+  end
+
   private
 
   def order_params
