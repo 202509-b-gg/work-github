@@ -13,7 +13,9 @@
     <%= render 'layouts/header' %>
       <main>
         <!-- フラッシュメッセージの表示 -->
-        <p id="notice"><%= notice %></p>
+        <% flash.each do |key, message| %>
+          <div class="flash <%= key %>"><%= message %></div>
+        <% end %>
         <%= yield %>
       </main>
     <%= render 'layouts/footer' %>

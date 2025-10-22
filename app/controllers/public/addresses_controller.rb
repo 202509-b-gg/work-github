@@ -19,6 +19,8 @@ class Public::AddressesController < ApplicationController
       flash[:notice] = "配送先の登録が完了しました。"
       redirect_to addresses_path
     else
+      @customer = current_customer
+      @addresses = @customer.addresses
       flash.now[:alert] = "配送先の登録に失敗しました。"
       render :index
     end
