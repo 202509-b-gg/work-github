@@ -8,6 +8,5 @@ class Public::ItemsController < ApplicationController
     @allitems = Item.where(is_active: true)
     @items = Item.where(is_active: true).page(params[:page])
     @genres = Genre.limit(10)
-    @genre = Genre.find(params[:genre_id])
   end
 end
