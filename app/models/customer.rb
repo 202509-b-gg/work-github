@@ -8,6 +8,15 @@ class Customer < ApplicationRecord
 
 
   has_many :cart_items, dependent: :destroy #カート機能とのアソシエーション
+
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+  validates :postal_code, presence: true
+  validates :address, presence: true
+  validates :telephone_number, presence: true
+  validates :email, presence: true
   
   # is_activeがfalseの場合はログイン不可にする
   def active_for_authentication?
