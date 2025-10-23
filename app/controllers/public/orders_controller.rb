@@ -66,7 +66,7 @@ class Public::OrdersController < ApplicationController
     @order.payment_method ||= "credit_card"
   
     if @order.payment_method == "credit_card"
-      @order.status = "payment_confirmed"
+      @order.status = "waiting_for_payment"
     else
       @order.status = "waiting_for_payment"
     end

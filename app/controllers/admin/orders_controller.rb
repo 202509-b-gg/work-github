@@ -8,11 +8,15 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.update(order_params)
-    if @order.status == "payment_confirmation"
-      @order.order_details.each do |order_detail|
-        order_detail.update(production_status: "waiting_for_production")
+    prev_status = @order.status # 更新前のステータスを保持
+    if @order.update(order_params)
+      # 入金確認になったら、全ての製作ステータスを製作待ちに
+      if @order.status == "payment_confirmed" && prev_status != "payment_confirmed"
+        @order.order_details.each do |order_detail|
+          order_detail.update(making_status: "waiting_for_making")
+        end
       end
+      # 製作中・製作完了の自動反映もorder_detail更新時にするため、ここでは不要
     end
     redirect_to admin_order_path(@order)
   end

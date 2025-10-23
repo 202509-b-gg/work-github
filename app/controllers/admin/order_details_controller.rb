@@ -5,10 +5,13 @@ class Admin::OrderDetailsController < ApplicationController
     @order = Order.find(params[:order_id])
     @order_detail = @order.order_details.find(params[:id])
     if @order_detail.update(order_detail_params)
-      if @order_detail.making_status == "production_completed"
-        if @order.order_details.where.not(making_status: "production_completed").empty?
-          @order.update(status: "ready_for_shipping")
-        end
+      # どれか一つでも「製作中」なら注文ステータスを「製作中」に
+      if @order.order_details.where(making_status: "in_making").exists?
+        @order.update(status: "in_production")
+      end
+      # すべて「製作完了」なら注文ステータスを「発送準備中」に
+      if @order.order_details.where.not(making_status: "complete_made").empty?
+        @order.update(status: "preparing_for_shipping")
       end
     end
     redirect_to admin_order_path(@order)
