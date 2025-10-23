@@ -1,7 +1,7 @@
 <div class='container py-5'>
   <div class='row'>
-    <%= render 'sidebar' %>
-      <div class='col-md-10'>
+    <%= render 'public/genres/index', genres: @genres %>
+      <div class='col-md-9'>
         <div class='row'>
           <div class="product-image-area">
             <%= image_tag @item.get_item_image, size:"300x200" %>
