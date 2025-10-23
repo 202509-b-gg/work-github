@@ -1,0 +1,17 @@
+<aside class="sidebar-area">
+  <div class="card mb-4">
+    <div class="card-header text-center font-weight-bold">
+      ジャンル検索
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item text-center">
+          <%= link_to "全ての商品", items_path %>
+        </li>
+      <% @genres.each do |genre| %>
+        <li class="list-group-item text-center">
+          <%= link_to genre.name, genre_path(genre) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</aside>
