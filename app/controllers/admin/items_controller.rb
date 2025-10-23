@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-  # ログイン必須
+
   before_action :authenticate_admin!
 
   def index

@@ -21,4 +21,14 @@ class Item < ApplicationRecord
     (self.price * 1.10).round
   end
 
+    def self.ransackable_attributes(auth_object = nil)
+    # nameは検索OKとする
+    %w[name]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    # 関連先のモデルを検索する必要がなければ空の配列を返す
+    []
+  end
+
 end
