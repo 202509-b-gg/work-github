@@ -1,6 +1,6 @@
 class Public::AddressesController < ApplicationController
-  # ログイン必須
-  before_action :authenticate_customer! 
+
+  before_action :authenticate_customer!
 
   def index
     @customer = current_customer
