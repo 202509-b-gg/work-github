@@ -99,21 +99,18 @@
           </ul>
         </div>
         <div class="flex-row">
-          <!-- ログイン中かどうか -->
-          <% if current_customer %>
-            <div class="search_form pe-3">
-              <%= search_form_for @q, url: items_path, class:"row justify-content-end" do |f| %>
-                <div class="col-md-4 p-0">
-                  <%= f.search_field :name_cont, class:"form-control", placeholder: "商品名" %>
-                </div>
-                <div class="col-md-1 p-0 ml-3">
-                  <button class="btn btn-outline-success" type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </button>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
+          <div class="search_form pe-3">
+            <%= search_form_for @q, url: items_path, class:"row justify-content-end" do |f| %>
+              <div class="col-md-4 p-0">
+                <%= f.search_field :name_cont, class:"form-control", placeholder: "商品名" %>
+              </div>
+              <div class="col-md-1 p-0 ml-3">
+                <button class="btn btn-outline-success" type="submit">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
