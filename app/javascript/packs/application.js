@@ -8,6 +8,17 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+import "jquery";
+import "popper.js";
+import "bootstrap";
+import "../stylesheets/application"; 
+import "../stylesheets/public_homes_top.css";
+import "../stylesheets/custom_header";
+import "../stylesheets/order_form.css"
+import "../stylesheets/order_index.css"
+import "../stylesheets/order_confirm.css"
+import "../stylesheets/order_show.css"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

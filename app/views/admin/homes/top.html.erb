@@ -1,0 +1,38 @@
+<div class="container my-5">
+  <h3 class="mb-4 pb-2">
+    <span class="bg-light d-inline-block px-2">注文履歴一覧</span>
+  </h3>
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead class="table-light" style="background: #f5f5f5;">
+        <tr>
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td style="text-decoration: underline; text-decoration-color: currentColor; color: inherit;">
+              <%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order), style: "color: inherit; text-decoration: underline; text-decoration-color: currentColor;" %>
+            </td>
+            <td>
+              <% if order.customer.present? %>
+                <%= [order.customer.last_name, order.customer.first_name].compact.join(" ") %>
+              <% else %>
+                不明
+              <% end %>
+            </td>
+            <td><%= order.total_items %></td>
+            <td><%= order.status_i18n %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%= paginate @orders %>
+  </div>
+</div>

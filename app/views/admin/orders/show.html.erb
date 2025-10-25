@@ -1,0 +1,102 @@
+<div class="container my-5">
+  <h3 class="mb-4 pb-2">
+    <span class="bg-light d-inline-block px-2">注文履歴一覧</span>
+  </h3>
+  <div class="mb-4" style="max-width: 700px;">
+    <div class="row mb-2">
+      <div class="col-auto" style="font-weight:bold;">購入者</div>
+      <div class="col-auto">
+        <% if @order.customer.present? %>
+          <%= link_to [@order.customer.last_name, @order.customer.first_name].compact.join(" "), admin_customer_orders_path(@order.customer), style: "text-decoration: underline; color: inherit;" %>
+        <% else %>
+          不明
+        <% end %>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-auto" style="font-weight:bold;">注文日</div>
+      <div class="col-auto">
+        <%= @order.created_at.strftime("%Y/%m/%d") %>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-auto" style="font-weight:bold;">配送先</div>
+      <div class="col-auto">
+        〒<%= @order.postal_code %> <%= @order.address %><br>
+        <%= @order.name %>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-auto" style="font-weight:bold;">支払方法</div>
+      <div class="col-auto">
+        <%= @order.payment_method_i18n %>
+      </div>
+    </div>
+    <div class="row mb-2 align-items-center">
+      <div class="col-auto" style="font-weight:bold;">注文ステータス</div>
+      <div class="col-auto">
+        <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true, class: "d-inline" do |f| %>
+          <%= f.select :status, Order.statuses.keys.map { |s| [I18n.t("enums.order.status.#{s}"), s] }, { selected: @order.status }, class: "form-select d-inline-block w-auto" %>
+          <%= f.submit "更新", class: "btn btn-success btn-sm ms-2" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- 注文商品一覧＋合計金額サマリー -->
+  <div class="row mt-3 justify-content-start" style="max-width:1200px;">
+    <!-- テーブルを縮小: col-8 -->
+    <div class="col-9" style="min-width:400px;">
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle mb-0" style="background: #fff;">
+          <thead class="table-light" style="background: #f5f5f5;">
+            <tr>
+              <th>商品名</th>
+              <th>単価（税込）</th>
+              <th>数量</th>
+              <th>小計</th>
+              <th>製作ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order_details.each do |detail| %>
+              <tr>
+                <td><%= detail.item&.name || "不明" %></td>
+                <td><%= number_with_delimiter(detail.price) %></td>
+                <td><%= detail.amount %></td>
+                <td><%= number_with_delimiter(detail.price * detail.amount) %></td>
+                <td>
+                  <%= form_with model: detail, url: admin_order_order_detail_path(@order, detail), method: :patch, local: true, class: "d-inline" do |f| %>
+                    <%= f.select :making_status, OrderDetail.making_statuses.keys.map { |s| [I18n.t("enums.order_detail.making_status.#{s}"), s] }, { selected: detail.making_status }, class: "form-select d-inline-block w-auto" %>
+                    <%= f.submit "更新", class: "btn btn-success btn-sm ms-2" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="col-3 d-flex align-items-end" style="min-width:200px;">
+      <ul class="list-group" style="border:none; width:100%;">
+        <li class="list-group-item d-flex justify-content-between border-0 px-0 py-1">
+          <span>商品合計</span>
+          <span><%= number_with_delimiter(@order.total_payment) %>円</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between border-0 px-0 py-1">
+          <span>送料</span>
+          <span><%= number_with_delimiter(@order.shipping_cost) %>円</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between border-0 px-0 py-1">
+          <strong>請求金額合計</strong>
+          <strong><%= number_with_delimiter(@order.total_amount) %>円</strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <%= link_to "注文履歴一覧へ戻る", admin_root_path, class: "btn btn-secondary" %>
+  </div>
+</div>

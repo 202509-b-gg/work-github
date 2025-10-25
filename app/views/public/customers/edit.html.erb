@@ -1,0 +1,78 @@
+<div class="container-fluid py-5">
+
+  <!-- タイトル -->
+  <h3 class="col-lg-2 offset-lg-2 mb-4">
+    <span class="bg-light d-inline-block px-2">会員情報編集</span>
+  </h3>
+
+  <div class="row-lg-3 offset-lg-2">
+  
+    <%= form_with model: @customer, method: :patch, local: true do |f| %>
+
+      <!-- 氏名 -->
+      <div class="mb-3 row">
+        <%= f.label :last_name, "氏名", class: "col-lg-2 col-form-label" %>
+        <div class="col-lg-2">
+          <%= f.text_field :last_name, class: "form-control", style:"width: 150px;", placeholder: "山田" %>
+        </div>
+        <div class="col-lg-2">
+          <%= f.text_field :first_name, class: "form-control", style:"width: 150px;", placeholder: "花子" %>
+        </div>
+      </div>
+
+      <!-- フリガナ -->
+      <div class="mb-3 row">
+        <%= f.label :last_name_kana, "フリガナ", class: "col-lg-2 col-form-label" %>
+        <div class="col-lg-2">
+          <%= f.text_field :last_name_kana, class: "form-control", style:"width: 150px;" %>
+        </div>
+        <div class="col-lg-2">
+          <%= f.text_field :first_name_kana, class: "form-control", style:"width: 150px;" %>
+        </div>
+      </div>
+
+      <!-- 郵便番号 -->
+      <div class="mb-3 row">
+        <%= f.label :last_name_kana, "郵便番号", class: "col-lg-2 col-form-label" %>
+        <div class="col-lg-2">
+          <%= f.text_field :postal_code, class: "form-control", style:"width: 150px;" %>
+        </div>
+      </div>
+
+      <!-- 住所 -->
+      <div class="mb-3 row">
+        <%= f.label :last_name_kana, "住所", class: "col-lg-2 col-form-label" %>
+        <div class="col-lg-3">
+          <%= f.text_field :address, class: "form-control", style:"width: 600px;" %>
+        </div>
+      </div>
+
+      <!-- 電話番号 -->
+      <div class="mb-3 row">
+        <%= f.label :last_name_kana, "電話番号", class: "col-lg-2 col-form-label" %>
+        <div class="col-lg-1">
+          <%= f.text_field :telephone_number, class: "form-control", style:"width: 150px;" %>
+        </div>
+      </div>
+
+      <!-- メールアドレス -->
+      <div class="mb-4 row">
+        <%= f.label :last_name_kana, "メールアドレス", class: "col-lg-2 col-form-label" %>
+        <div class="col-lg-2">
+          <%= f.email_field :email, class: "form-control", style:"width: 425px;" %>
+        </div>
+      </div>
+
+      <!-- ボタン -->
+      <div class="row">
+        <div class="col-lg-2 offset-lg-2">
+          <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+        </div>
+        <div class="col-lg-1">
+          <%= link_to "退会する", unsubscribe_customer_path, class: "btn btn-danger" %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>

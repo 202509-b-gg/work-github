@@ -1,0 +1,55 @@
+<div class="container-fluid py-5">
+
+  <!-- タイトル -->
+  <h3 class="col-lg-2 offset-lg-2 mb-4">
+    <span class="bg-light d-inline-block px-2">マイページ </span>
+  </h3>
+
+  <div class="row-lg-3 offset-lg-2">
+    <div class="row align-items-center">
+      <h4 class="col-lg-1">登録情報</h4>
+      <%= link_to '編集する', edit_customer_information_path, method: :get, class: 'btn btn-success mb-2' %>
+    </div>
+
+  <!-- 会員情報テーブル -->
+    <table class="table table-bordered mb-4 w-auto">
+      <tbody>
+        <tr>
+          <th class="bg-light">氏名</th>
+          <td><%= @customer.last_name %> <%= @customer.first_name %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">カナ</th>
+          <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">郵便番号</th>
+          <td><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">住所</th>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">電話番号</th>
+          <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">メールアドレス</th>
+          <td><%= @customer.email %></td>
+        </tr>
+      </tbody>
+    </table>
+  
+
+    <!-- ボタン -->
+    <div class="row mb-2 align-items-center">
+      <h4 class="col-lg-1">配送先</h4>
+      <%= link_to '一覧を見る', addresses_path, method: :get, class: 'btn btn-primary mb-2' %>
+    </div>
+    <div class="row align-items-center">
+      <h4 class="col-lg-1">注文履歴</h4>
+      <%= link_to '一覧を見る', orders_path, method: :get, class: 'btn btn-primary mb-2' %>
+    </div>
+  </div>
+</div>

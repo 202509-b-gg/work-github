@@ -1,0 +1,39 @@
+<div class="container-fluid py-5">
+
+  <h3 class="col-lg-2 offset-lg-2 mb-4">
+    <span class="bg-light d-inline-block px-2">会員一覧</span>
+  </h3>
+
+  <!-- 会員情報テーブル -->
+  <div class="col-lg-6 offset-lg-3">
+    <table class="table table-borderless mb-4">
+      <thead class="border-top border-bottom">
+        <th class="bg-light">会員ID</th>
+        <th class="bg-light" style="text-decoration: underline;">氏名</th>
+        <th class="bg-light">メールアドレス</th>
+        <th class="bg-light">ステータス</th>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr class="border-bottom">
+            <td><%= customer.id %></td>
+            <td style="text-decoration: underline;">
+              <%= link_to "#{customer.last_name} #{customer.first_name}", admin_customer_path(customer), class: "text-dark"%>
+            </td>
+            <td><%= customer.email %></td>
+            <td class="font-weight-bold">
+              <% if customer.is_active %>
+                <span class="text-success">有効</span>
+              <% else %>
+                <span class="text-secondary">退会</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+      <%= paginate @customers %>
+    </div>
+  </div>
+</div>

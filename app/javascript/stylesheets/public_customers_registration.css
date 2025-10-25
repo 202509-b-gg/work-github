@@ -1,0 +1,86 @@
+.register-form-outer {
+  width: 100%;
+  max-width: 1180px;
+  min-width: 320px;
+  margin: 0 auto;
+}
+.register-title {
+  font-size: 2rem;
+  font-weight: bold;
+  background: #eee;
+  display: inline-block;
+  padding: 6px 28px;
+  border-radius: 4px;
+  letter-spacing: 0.1em;
+}
+.form-group.row.flex-nowrap {
+  flex-wrap: nowrap !important;
+}
+.mini-label {
+  font-size: 0.95em;
+  color: #555;
+  min-width: 32px;
+  margin-right: 3px;
+  margin-left: 2px;
+  display: inline-block;
+  white-space: nowrap !important;
+}
+.flex-name {
+  flex: 0 1 110px;
+  min-width: 60px;
+  max-width: 110px;
+}
+.flex-long {
+  width: 100%;
+}
+.form-control {
+  border: 2px solid #222;
+  border-radius: 4px;
+  font-size: 1.03rem;
+  background: #fff;
+  min-width: 0;
+}
+.register-btn {
+  font-size: 1.1rem;
+  background: #47b142;
+  color: #fff;
+  border-radius: 5px;
+  padding: 8px 0;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  border: none;
+  margin-top: 10px;
+}
+.register-btn:hover {
+  background: #36942e;
+}
+.already-registered {
+  margin-top: 36px;
+  text-align: left;
+}
+.already-title {
+  display: inline-block;
+  background: #eee;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 2px 14px;
+  border-radius: 4px;
+}
+
+.label-nowrap {
+  white-space: nowrap;
+}
+
+@media (max-width: 1400px) {
+  .register-form-outer {
+    max-width: 99vw;
+  }
+}
+@media (max-width: 991px) {
+  .form-group.row.flex-nowrap {
+    flex-wrap: wrap !important;
+  }
+  .label-nowrap {
+    white-space: normal;
+  }
+}

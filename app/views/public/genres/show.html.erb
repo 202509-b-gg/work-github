@@ -1,0 +1,27 @@
+<div class='container py-5'>
+  <div class='row'>
+     <%= render 'index' %>
+      <div class='col-md-9'>
+        <div class="row">
+          <h4><%= @genre.name %>の商品一覧</h4>
+          <p><%= "(全#{@genre.items.where(is_active: true).count}件)" %></p>
+        </div>
+          <div class="row">
+            <% @items.each do |item| %>
+              <div class="col-md-3 p-2">
+                <td><%= link_to item_path(item.id) do %>
+                  <%= image_tag item.get_item_image, size:'200x130' %>
+                  <% end %>
+                </td><br>
+                <td><%= item.name %></td><br>
+                <td><%= "¥#{item.add_tax_price.to_s(:delimited)}" %></td>
+              </div>
+            <% end %>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <%= paginate @items %>
+          </div>
+      </div>  
+  </div>
+</div>    
+

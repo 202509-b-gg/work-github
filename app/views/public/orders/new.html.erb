@@ -1,0 +1,67 @@
+<div class="order-form-container">
+  <%= form_with url: confirm_orders_path, method: :post, local: true do |f| %>
+    <h2 class="order-form-title">
+      <span class="order-form-title-text">注文情報入力</span>
+    </h2>
+
+    <div class="order-form-section">
+      <h4 class="order-form-label">支払方法</h4>
+      <div class="order-form-radio-group">
+        <label>
+          <%= f.radio_button :payment_method, 'credit_card', checked: true %>
+          クレジットカード
+        </label>
+        <label>
+          <%= f.radio_button :payment_method, 'transfer' %>
+          銀行振込
+        </label>
+      </div>
+    </div>
+
+    <div class="order-form-section">
+      <h4 class="order-form-label">お届け先</h4>
+      <div class="order-form-radio-group">
+        <label>
+          <%= f.radio_button :address_type, "customer_address", checked: true %>
+          ご自身の住所
+        </label>
+        <div class="order-form-info">
+          〒<%= current_customer.postal_code %>
+          <%= current_customer.address %>
+          <%= current_customer.last_name %><%= current_customer.first_name %>
+        </div>
+
+        <label>
+          <%= f.radio_button :address_type, "address" %>
+          登録済住所から選択
+        </label>
+        <div class="order-form-info">
+          <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display), {}, { class: "order-form-select" } %>
+        </div>
+
+        <label>
+          <%= f.radio_button :address_type, "new_address" %>
+          新しいお届け先
+        </label>
+        <div class="order-form-info">
+          <div class="order-form-input-group">
+            <span>郵便番号(ハイフンなし)</span>
+            <%= f.text_field :new_postal_code, placeholder: "0000000", class: "order-form-input postal-code-input" %>
+          </div>
+          <div class="order-form-input-group">
+            <span>住所</span>
+            <%= f.text_field :new_address, placeholder: "東京都渋谷区代々木神園町0-0", class: "order-form-input address-input" %>
+          </div>
+          <div class="order-form-input-group">
+            <span>宛名</span>
+            <%= f.text_field :new_recipient_name, placeholder: "令和道子", class: "order-form-input name-input" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-form-submit">
+      <%= f.submit "確認画面へ進む", class: "order-form-button" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,39 @@
+<div class="container-main mt-4">
+  <!-- サイドバー -->
+  <%= render 'public/homes/index', genres: @genres %>
+
+  <!-- メインコンテンツ -->
+  <main class="main-content-area">
+    <div class="welcome-area">
+      <div class="welcome-image-box position-relative">
+        <%= image_tag "イメージ画像_Gemini.png", alt: "Topページ", class: "welcome-placeholder-img" %>
+        <div class="welcome-msg-box">
+          ようこそ、ながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でないけど商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">新着商品</h2>
+    <div class="product-list-row">
+      <% Item.order(updated_at: :desc).limit(4).each do |item| %>
+        <%= link_to item_path(item), class: "d-flex flex-column align-items-center text-decoration-none text-dark" do %>
+          <div class="product-img-box">
+            <% if item.item_image.attached? %>
+              <%= image_tag item.item_image, alt: item.name, class: "product-placeholder-img" %>
+            <% else %>
+              <%= image_tag "no_image.jpg", alt: "NO IMAGE", class: "product-placeholder-img" %>
+            <% end %>
+          </div>
+          <div class="product-name"><%= item.name %></div>
+          <div class="product-price">¥<%= number_with_delimiter(item.price) %></div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="all-products-link">
+      <%= link_to '全ての商品を見る＞', items_path, style: 'color: #007bff; text-decoration: underline; font-weight: bold;' %>
+    </div>
+  </main>
+</div>
